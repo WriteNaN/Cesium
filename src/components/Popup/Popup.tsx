@@ -1,15 +1,5 @@
-import Lockscreen from "./Lock";
-import PopupWrapper from "./Wrapper";
-
-export default function Popup() {
-  return (
-    <PopupWrapper>
-      <Lockscreen />
-    </PopupWrapper>
-  );
-}
-
-/* import { useEffect, useState } from "react";
+// /*
+import { useEffect, useState } from "react";
 
 import PopupWrapper from "./Wrapper";
 import Lockscreen from "./Lock";
@@ -43,6 +33,17 @@ export default function Popup() {
   return (
     <PopupWrapper>
       {isLocked ? <Lockscreen /> : <InitializeScreen />}
+    </PopupWrapper>
+  );
+}
+// */
+/*import Lockscreen from "./Lock";
+import PopupWrapper from "./Wrapper";
+
+export default function Popup() {
+  return (
+    <PopupWrapper>
+      <Lockscreen />
     </PopupWrapper>
   );
 }
