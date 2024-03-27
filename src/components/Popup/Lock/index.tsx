@@ -21,7 +21,7 @@ export default function Lockscreen() {
       ) : (
         <>
           <Navbar />
-          <Form goForth={setResetPassW} handleSubmit={() => setShouldCall(true)} invalidPass={invalidPass} />
+          <Form goForth={setResetPassW} setInvalidPass={setInvalidPass} handleSubmit={() => setShouldCall(true)} invalidPass={invalidPass} />
           <Footer shouldCall={shouldCall} setInvalidPass={setInvalidPass} setShouldCall={setShouldCall} />
         </>
       )}

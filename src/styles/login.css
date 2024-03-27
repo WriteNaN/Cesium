@@ -15,6 +15,6 @@
 
 .invalid-password {
   animation: shake 0.2s ease-in-out 0s 2;
-  box-shadow: 0 0 0.6rem #ff0000 !important;
+  box-shadow: 0 0 0.2rem #ff0000 !important;
   border-color: #ff0000 !important;
 }

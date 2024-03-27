@@ -1,14 +1,30 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useRef, useEffect } from "react";
 
 export default function Form({
   goForth,
   handleSubmit,
   invalidPass,
+  setInvalidPass
 }: {
   goForth: Dispatch<SetStateAction<boolean>>;
   handleSubmit: () => any;
   invalidPass: boolean;
+  setInvalidPass: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setInvalidPass(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setInvalidPass]);
+
   return (
     <div className="lockscreen-inner">
       <form
@@ -39,6 +55,7 @@ export default function Form({
                 type="password"
                 id="unlock-pass"
                 placeholder="Password"
+                ref={inputRef}
                 maxLength={48}
               />
             </div>
