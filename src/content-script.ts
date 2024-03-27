@@ -5,4 +5,5 @@ function injectScript(file_path: string) {
     document.body.appendChild(script);
 }
 
-injectScript(chrome.runtime.getURL("/static/api.js"));
+injectScript(chrome.runtime.getURL("/static/api.js")); 
+// FOR V2 would you like to allow mounting this script only if the site owner consents with a header?

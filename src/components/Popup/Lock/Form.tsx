@@ -1,12 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 
+
 export default function Form({ goForth }: { goForth: Dispatch<SetStateAction<boolean>> }) {
   return (
     <div className="lockscreen-inner">
       <form
         id="unlock"
         className="lockscreen-form"
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={(e) => {
+          return e.preventDefault();
+        }}
       >
         <div className="unlock-form">
           <div className="unlock-form-img select-none">
@@ -22,6 +25,7 @@ export default function Form({ goForth }: { goForth: Dispatch<SetStateAction<boo
               <input
                 className="relative select-text z-10 unlock-form-input"
                 type="password"
+                id="unlock-pass"
                 placeholder="Password"
                 maxLength={48}
               />
