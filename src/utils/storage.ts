@@ -11,6 +11,17 @@ export function resetWallet() : void {
   chrome.storage.local.clear();
 }
 
+export function lockWallet(): void {
+  chrome.storage.local.get(null, function (items) {
+    for (var key in items) {
+      if (key.startsWith(sessionPrefix)) {
+        chrome.storage.local.remove(key);
+      }
+    }
+  });
+  window.location.reload();
+}
+
 export function getSessionValue(key: string): Promise<string | undefined> {
   return new Promise((resolve, reject) => {
     var keyWithPrefix = sessionPrefix + key;
