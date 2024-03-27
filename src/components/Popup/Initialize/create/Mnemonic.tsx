@@ -17,7 +17,7 @@ export default function Mnemonic({
   useEffect(() => {
     const generatedMnemonic = wallet.generate().mnemonic;
     setMnemonic(generatedMnemonic);
-    setSessionValue("mnemonic", generatedMnemonic);
+    setSessionValue("mnemonic", wallet.fromMnemonic(generatedMnemonic).seed);
   }, []);
   return (
     <>

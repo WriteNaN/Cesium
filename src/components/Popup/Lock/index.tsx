@@ -5,8 +5,15 @@ import Form from "./Form";
 import Footer from "./Footer";
 import Forgot from "../Forgot";
 
+import "../../../styles/login.css";
+
+// As long as it gets the work done, it's all good - Write Int
+
 export default function Lockscreen() {
   const [resetPassW, setResetPassW] = useState<boolean>(false);
+  const [shouldCall, setShouldCall] = useState<boolean>(false);
+  const [invalidPass, setInvalidPass] = useState<boolean>(false);
+
   return (
     <>
       {resetPassW ? (
@@ -14,8 +21,8 @@ export default function Lockscreen() {
       ) : (
         <>
           <Navbar />
-          <Form goForth={setResetPassW} />
-          <Footer />
+          <Form goForth={setResetPassW} handleSubmit={() => setShouldCall(true)} invalidPass={invalidPass} />
+          <Footer shouldCall={shouldCall} setInvalidPass={setInvalidPass} setShouldCall={setShouldCall} />
         </>
       )}
     </>

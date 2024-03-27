@@ -1,11 +1,20 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashLoader as HashSpinner } from "react-spinners";
+import { wallet } from "multi-nano-web";
 
 // @ts-expect-error no check
 import cryptoWorker from "../../../worker/crypto?worker&url";
-import { getLocalStorage } from "../../../utils/storage";
+import { getLocalStorage, setSessionValue } from "../../../utils/storage";
 
-export default function Footer() {
+export default function Footer({
+  shouldCall,
+  setShouldCall,
+  setInvalidPass
+}: {
+  shouldCall: boolean;
+  setShouldCall: React.Dispatch<React.SetStateAction<boolean>>;
+  setInvalidPass: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -16,9 +25,17 @@ export default function Footer() {
     worker.onmessage = async (event) => {
       const { result, error } = event.data;
       if (result) {
-        alert(result);
+        try {
+          const res = wallet.fromSeed(result); // just double check :D
+          setInvalidPass(false);
+          setSessionValue("masterSeed", res.seed);
+        } catch {
+          console.error("corrupted seed!");
+          setInvalidPass(true);
+        }
       } else if (error) {
-        alert(error);
+        console.error("invalid password!");
+        setInvalidPass(true);
       }
       setLoading(false);
     };
@@ -40,6 +57,13 @@ export default function Footer() {
     if (!elem || elem === "") return;
     setPassword(elem);
   };
+
+  useEffect(() => {
+    if (shouldCall) {
+      setShouldCall(false);
+      return handleUnlock();
+    }
+  }, [shouldCall]);
 
   return (
     <div className="lockscreen-footer">

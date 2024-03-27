@@ -1,7 +1,7 @@
 import React, { Dispatch, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import words from "../../../../utils/words";
-import { tools } from "multi-nano-web";
+import { tools, wallet } from "multi-nano-web";
 
 import { setSessionValue } from "../../../../utils/storage";
 
@@ -49,6 +49,7 @@ export default function ImportPhrase({
   };
 
   const handleInputBlur = (index: number) => {
+    console.log(index);
     validateMnemonic(mnemonicInputs);
     setActiveInputs(null);
   };
@@ -123,7 +124,7 @@ export default function ImportPhrase({
               e.preventDefault();
               if (canContinue) {
                 if (tools.validateMnemonic(mnemonicInputs.join(" "))) {
-                  setSessionValue("mnemomic", mnemonicInputs.join(" "));
+                  setSessionValue("mnemomic", wallet.fromMnemonic(mnemonicInputs.join(" ")).seed);
                   return setW(5);
                 } else {
                   // todo
