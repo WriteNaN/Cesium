@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar-track {
+  background: 0 0;
+  position: absolute;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffffff80;
+  opacity: 0.3;
+  border-radius: 1.5px;
+}
+
+::-webkit-scrollbar {
+  width: 1px;
+  position: absolute;
+  left: 0;
+}
+
+::selection {
+  background-color: #fff;
+  color: #000;
+}
+
+.popup-wrapper {
+  background-color: rgb(24, 24, 24);
+  min-width: 360px;
+  min-height: 600px;
+  height: 100vh;
+  width: 100vw;
+  border: 1px solid rgb(50, 50, 50);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.popup-wrapper-2 {
+  height: 100vh;
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+}
+
+.popup-flexbox {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+  background: rgb(16, 16, 20);
+  transition: transform 0.5s ease;
+}
+
+.lockscreen-nav {
+  z-index: 1;
+  background-color: rgb(16, 16, 20);
+  padding: 10px 16px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgb(50, 50, 50);
+  height: 46px;
+  width: 100%;
+}
+
+.lockscreen-nav-q {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  margin: -5px;
+}
+
+.lockscreen-inner {
+  flex: 1 1 0%;
+  overflow: auto;
+  padding: 0px 20px;
+}
+
+.lockscreen-form {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  flex: 1 1 0%;
+}
+
+.lockscreen-footer {
+  flex: 0 0 auto;
+  padding: 14px 20px;
+}
+
+.unlock-button {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 0px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  pointer-events: auto;
+  border: none;
+  outline-color: transparent;
+  outline-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgb(56, 156, 250);
+  color: rgb(34, 34, 34);
+  transition: background 0.4s ease, transform 0.4s ease;
+}
+
+.unlock-button:hover {
+  background: rgb(117, 188, 255);
+}
+
+.unlock-button:active {
+  background: rgb(34, 147, 253);
+  transform: scale(0.98);
+}
+
+.unlock-form {
+  flex: 1 1 0%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.unlock-form-img {
+  display: flex;
+  flex: 1 1 0%;
+  position: relative;
+  min-height: 252px;
+  width: 250px;
+  margin-bottom: -20px;
+}
+
+.unlock-form-image {
+  width: 50%;
+  height: auto;
+}
+
+.unlock-form-blank {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 62%;
+  height: 50%;
+}
+
+.unlock-form-label {
+  color: white;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 24px;
+  margin: 0px 0px 20px;
+  line-height: 34px;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.unlock-form-input {
+  width: 100%;
+  padding: 14px;
+  background: rgb(12, 12, 12);
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(47, 47, 47);
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.unlock-form-input:focus {
+  outline: 0;
+}
+
+.unlock-form-input::-ms-reveal {
+  filter: invert(70%);
+}
+
+.unlock-form-footer {
+  color: rgb(102, 102, 102);
+  margin-top: 16px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 16px;
+  line-height: 19px;
+  background-color: transparent;
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+.unlock-form-footer:hover {
+  color: rgb(180, 179, 179);
+}

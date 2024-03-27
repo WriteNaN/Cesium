@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Cesium Wallet",
+  "description": "Secure, private and minimalist wallet extension for the Nano (XNO) - brought to you by Nano Gift",
+  "version": "1.0",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }, 
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_script.js"]
+    }
+  ],
+  "background": {
+    "type": "module",
+    "service_worker": "service_worker.js"
+  },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["<all_urls>"]
+}

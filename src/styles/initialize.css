@@ -1,0 +1,297 @@
+.init-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 100%;
+  flex: 1 1 0%;
+}
+
+.step-p-content {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+  min-height: calc(458px);
+  padding: 0px 20px 20px;
+}
+
+.step-p-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  flex: 1 1 0%;
+}
+
+.step-p-form-m {
+  display: flex;
+  flex: 1 1 0%;
+  flex-direction: column;
+  width: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.step-p-form-c {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+}
+
+.step-p-form-d {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 28px;
+  margin: 0px 0px 10px;
+  line-height: 34px;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.step-p-form-cc {
+  color: rgb(153, 153, 153);
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  opacity: 1;
+  font-size: 18px;
+  line-height: 25px;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.step-p-p-wrapper {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  margin-bottom: 17px;
+}
+
+.step-p-input {
+  width: 100%;
+  padding: 14px !important;
+  background: rgb(12, 12, 16) !important; 
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgb(47, 47, 47) !important;
+  border-radius: 6px !important;
+  color: white !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
+  margin-bottom: 10px !important;
+}
+
+.step-p-input-s {
+  color: rgb(235, 55, 66);
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  opacity: 1;
+  font-size: 14px;
+  margin: 0px;
+  line-height: 19px;
+  text-decoration: none;
+  background-color: transparent;
+  position: absolute;
+  top: 15px;
+  right: 14px;
+}
+
+.step-p-continue {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 0px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  pointer-events: auto;
+  border: none;
+  outline-color: transparent;
+  outline-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgb(56, 156, 250);
+  color: rgb(34, 34, 34);
+}
+
+.step-p-continue:hover {
+  background: rgb(117, 188, 255);
+}
+
+.step-p-input::-ms-reveal {
+  filter: invert(70%);
+}
+
+.step-p-confirm {
+  width: 100%;
+  padding: 14px !important;
+  background: rgb(12, 12, 16) !important; 
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: rgb(47, 47, 47) !important;
+  border-radius: 6px !important;
+  color: white !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
+}
+
+.start-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex: 1 1 0%;
+}
+
+.start-content-text {
+  color: rgb(153, 153, 153);
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  opacity: 1;
+  font-size: 20px;
+  line-height: 24px;
+  text-decoration: none;
+  background-color: transparent;
+  margin-top: 32px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  -webkit-box-pack: end;
+  justify-content: flex-end;
+}
+
+.button-create {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 0px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  pointer-events: auto;
+  border: none;
+  outline-color: transparent;
+  outline-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgb(56, 156, 250);
+  color: rgb(34, 34, 34);
+  margin-bottom: 10px;
+  transition: background 0.2s ease;
+}
+
+.button-create:hover {
+  background: rgb(117, 188, 255);
+}
+
+.button-restore {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 0px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  color: white;
+  pointer-events: auto;
+  border: none;
+  outline-color: transparent;
+  outline-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgb(51, 51, 51);
+  transition: background 0.2 ease;
+}
+
+.button-restore:hover {
+  background: rgb(73, 73, 73);
+}
+
+.step-p-nav {
+  background-color: rgb(16, 16, 24);
+  padding: 10px 16px;
+  border-bottom: 1px solid rgb(50, 50, 50);
+  height: 46px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.step-p-steps {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.step-dot {
+  height: 12px;
+  width: 12px;
+  background-color: rgb(56, 156, 250);
+  border-radius: 50%;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 1;
+  overflow: hidden;
+}

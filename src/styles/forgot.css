@@ -1,0 +1,125 @@
+.forgot-nav {
+  position: relative;
+  border-bottom: none;
+  z-index: 1;
+  background-color: rgb(16, 16, 24);
+  padding: 10px 16px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgb(50, 50, 50);
+  height: 46px;
+  width: 100%;
+}
+
+.forgot-close-btn {
+  position: absolute;
+  left: 0px;
+  height: 28px;
+  min-width: 28px;
+  transition: background-color 200ms ease 0s;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.forgot-w {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex: 1 1 0%;
+}
+
+.forgot-w p {
+  color: white;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 16px;
+  line-height: 25px;
+  text-decoration: none;
+  background-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+.forgot-c-w {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  flex: 1 1 0%;
+  padding: 30px 0px 0px;
+}
+
+.forgot-c-s {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.forgot-c-s-p {
+  color: white;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  opacity: 1;
+  font-size: 26px;
+  line-height: 31px;
+  text-decoration: none;
+  background-color: transparent;
+  margin-bottom: 16px;
+}
+
+.f-p-c {
+  color: rgb(119, 119, 119);
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  opacity: 1;
+  font-size: 16px;
+  line-height: 21px;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.f-p-c-b {
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 14px 0px;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  border: none;
+  outline-color: transparent;
+  outline-style: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+  text-overflow: ellipsis;
+  background: rgb(243, 4, 4);
+  color: rgb(255, 255, 255);
+}
