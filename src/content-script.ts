@@ -5,4 +5,4 @@ function injectScript(file_path: string) {
     document.body.appendChild(script);
 }
 
-injectScript(chrome.extension.getURL("/static/api.js"));
+injectScript(chrome.runtime.getURL("/static/api.js"));
