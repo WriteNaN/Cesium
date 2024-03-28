@@ -1,3 +1,7 @@
+// Really, please use the native API whenever possible.
+// Don't even think of polyfilling node apis (sorry I do).
+// No benchmark, but It got hella faster.
+
 interface Payload {
     seed?: string;
     password: string;
