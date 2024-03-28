@@ -42,7 +42,6 @@ export default function Created({
           worker.onmessage = (event) => {
             const { result, error } = event.data;
             if (result) {
-              alert(result);
               setLocalStorage("encryptedMasterKey", result);
             } else if (error) {
               console.error("Encryption failed:", error);
