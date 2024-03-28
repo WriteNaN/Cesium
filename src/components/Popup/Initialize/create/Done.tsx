@@ -1,3 +1,5 @@
+// To understand recursion, see the bottom of this file.
+
 import React, { Dispatch, useEffect, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import Confetti from "react-confetti-boom";
@@ -114,3 +116,5 @@ export default function Created({
     </>
   );
 }
+
+// To understand recursion, see the top of this file.

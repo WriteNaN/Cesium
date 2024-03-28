@@ -1,3 +1,5 @@
+// Please don't ask me why it's done here
+
 import React, { useEffect, useState } from "react";
 import { HashLoader as HashSpinner } from "react-spinners";
 import { wallet } from "multi-nano-web";

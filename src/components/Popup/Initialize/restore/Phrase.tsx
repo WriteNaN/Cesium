@@ -1,3 +1,5 @@
+// You know the rules and so do I
+
 import React, { Dispatch, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import words from "../../../../utils/words";
