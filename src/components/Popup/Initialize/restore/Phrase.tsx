@@ -126,11 +126,10 @@ export default function ImportPhrase({
               e.preventDefault();
               if (canContinue) {
                 if (tools.validateMnemonic(mnemonicInputs.join(" "))) {
-                  setSessionValue("mnemomic", wallet.fromMnemonic(mnemonicInputs.join(" ")).seed);
+                  setSessionValue("mnemonic", wallet.fromMnemonic(mnemonicInputs.join(" ")).seed);
                   return setW(5);
-                } else {
-                  // todo
-                }
+                } 
+                // todo
               }
               return;
             }}

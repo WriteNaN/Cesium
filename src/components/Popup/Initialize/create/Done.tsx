@@ -34,6 +34,7 @@ export default function Created({
 
   useEffect(() => {
     async function encryptData() {
+      alert(password+mnemonic);
       if (password && mnemonic) {
         try {
           setLoading(true);
@@ -42,6 +43,7 @@ export default function Created({
           worker.onmessage = (event) => {
             const { result, error } = event.data;
             if (result) {
+              alert(result);
               setLocalStorage("encryptedMasterKey", result);
             } else if (error) {
               console.error("Encryption failed:", error);
