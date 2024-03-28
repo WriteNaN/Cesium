@@ -81,7 +81,8 @@ export default function ImportPassword({
           onSubmit={(e) => {
             e.preventDefault();
             if (passwordMatch && !(confirmPassword == "")) {
-              return setW(420);
+              setSessionValue("password", password);
+              return setW(420); 
             }
             return;
           }}
