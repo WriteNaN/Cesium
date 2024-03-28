@@ -18,7 +18,7 @@ export default function Popup() {
   useEffect(() => {
     if (isAppLoggedIn) {
       (async () => {
-        setSessionMasterKey(await getSessionValue("masterSeed") || null);
+        setSessionMasterKey((await getSessionValue("masterSeed")) || null);
       })();
     }
   }, [isAppLoggedIn]);
@@ -54,15 +54,19 @@ export default function Popup() {
       )}
       {/** If prettier didn't exist... */}
 
-      {isAppLoggedIn && sessionMasterKey ? (
+      {isAppLoggedIn && (
         <>
-          <App />
-        </>
-      ) : (
-        <>
-        <div className="absolute inset-0 !z-50 flex !h-screen !w-screen items-center justify-center bg-black/90">
-          <HashSpinner size={80} color="#ffffff" loading={true} />
-        </div>
+          {sessionMasterKey ? (
+            <>
+              <App />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 !z-50 flex !h-screen !w-screen items-center justify-center bg-black/90">
+                <HashSpinner size={80} color="#ffffff" loading={true} />
+              </div>
+            </>
+          )}
         </>
       )}
     </PopupWrapper>
