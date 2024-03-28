@@ -34,7 +34,6 @@ export default function Created({
 
   useEffect(() => {
     async function encryptData() {
-      alert(password+mnemonic);
       if (password && mnemonic) {
         try {
           setLoading(true);
