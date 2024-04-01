@@ -1,4 +1,15 @@
-import { useEffect, useState } from "react";
+import PopupWrapper from "./Wrapper";
+import App from "./app";
+
+export default function Popup() {
+  return (
+    <PopupWrapper>
+      <App />
+    </PopupWrapper>
+  );
+}
+
+/* import { useEffect, useState } from "react";
 
 import PopupWrapper from "./Wrapper";
 import Lockscreen from "./Lock";
@@ -52,7 +63,7 @@ export default function Popup() {
           )}
         </>
       )}
-      {/** If prettier didn't exist... */}
+      {/** If prettier didn't exist... }
 
       {isAppLoggedIn && (
         <>
@@ -71,7 +82,7 @@ export default function Popup() {
       )}
     </PopupWrapper>
   );
-}
+} */
 
 // */ // Lets talk about this some other day
 /*import Lockscreen from "./Lock";

@@ -1,0 +1,78 @@
+.app-navbar {
+  z-index: 1;
+  background-color: rgb(16, 16, 24);
+  padding: 10px 16px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgb(50, 50, 50);
+  height: 46px;
+  width: 100%;
+}
+
+.app-navbar-menu {
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  display: inline-flex;
+  position: absolute;
+  right: auto;
+  z-index: 100;
+}
+
+.app-nav-m {
+  position: relative;
+  left: -5px;
+  height: 28px;
+  width: 28px;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.app-nav-c {
+  flex: 3 1 0%;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: inline-flex;
+}
+
+.bottom-nav-wrapper {
+  position: relative;
+  height: 60px;
+  display: flex;
+}
+
+.bottom-nav {
+  flex: 1 1 0%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0px 10px;
+  background-color: rgb(12, 16, 24);
+  border-top: 1px solid rgb(50, 50, 50);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px -6px 10px;
+}
+
+.bottom-nav-item {
+  padding: 15px 0px;
+  margin: 0px 12px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
