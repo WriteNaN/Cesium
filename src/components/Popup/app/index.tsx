@@ -12,6 +12,12 @@ import {
 } from "react-icons/ai";
 import { BiHistory, BiSolidDashboard } from "react-icons/bi";
 
+import Home from "./Home";
+import Art from "./Art";
+import Swap from "./Swap";
+import History from "./History";
+import Network from "./Network";
+
 export default function App() {
   const [widget, setWidget] = useState<"home" | "art" | "swap" | "history" | "network">("home");
   const [isNavOpen, setNavOpen] = useState<boolean>(false);
@@ -27,8 +33,14 @@ export default function App() {
         <div className="app-nav-c"></div>
       </section>
 
-      <div className="w-full h-full"> 
+      <div className="w-full h-full" onClick={() => isNavOpen ? setNavOpen(false) : null}> 
       {/** main content */}
+
+      { (widget == "home") && <Home />}
+      { (widget == "art") && <Art />}
+      { (widget == "swap") && <Swap />}
+      { (widget == "history") && <History />}
+      { (widget == "network") && <Network />}
       </div>
 
       <div className="bottom-nav-wrapper !drop-shadow-2xl !w-full">
