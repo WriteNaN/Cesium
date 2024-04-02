@@ -1,5 +1,4 @@
-// You would not believe your eyes,
-// if ten million fireflies lit up this codebase as I fell asleep.
+// You would not believe your eyes..
 
 import { useState } from "react";
 
@@ -19,30 +18,49 @@ import History from "./History";
 import Network from "./Network";
 
 export default function App() {
-  const [widget, setWidget] = useState<"home" | "art" | "swap" | "history" | "network">("home");
+  const [widget, setWidget] = useState<
+    "home" | "art" | "swap" | "history" | "network"
+  >("home");
   const [isNavOpen, setNavOpen] = useState<boolean>(false);
 
   return (
     <>
       <section className="app-navbar">
         <div className="app-navbar-menu">
-          <div className="app-nav-m hover:!bg-black p-1 rounded-md" onClick={() => setNavOpen(!isNavOpen)}>
-            { isNavOpen ? <FaBarsStaggered size={16} className="!text-slate-500 transform scale-x-[-1]" /> : <FaBars size={16} className="!text-slate-500" />}
+          <div
+            className="app-nav-m hover:!bg-black p-1 rounded-md"
+            onClick={() => setNavOpen(!isNavOpen)}
+          >
+            {isNavOpen ? (
+              <FaBarsStaggered
+                size={16}
+                className="!text-slate-500 transform scale-x-[-1]"
+              />
+            ) : (
+              <FaBars size={16} className="!text-slate-500" />
+            )}
           </div>
         </div>
         <div className="app-nav-c">
-         { (widget == "network") && <p className="text-white text-sm cursor-pointer select-none">Active Networks</p>}
+          {widget == "network" && (
+            <p className="text-white text-sm cursor-pointer select-none">
+              Active Networks
+            </p>
+          )}
         </div>
       </section>
 
-      <div className="w-full h-full" onClick={() => isNavOpen ? setNavOpen(false) : null}> 
-      {/** main content */}
+      <div
+        className="w-full h-full overflow-y-scroll overflow-x-hidden"
+        onClick={() => (isNavOpen ? setNavOpen(false) : null)}
+      >
+        {/** main content */}
 
-      { (widget == "home") && <Home />}
-      { (widget == "art") && <Art />}
-      { (widget == "swap") && <Swap />}
-      { (widget == "history") && <History />}
-      { (widget == "network") && <Network />}
+        {widget == "home" && <Home />}
+        {widget == "art" && <Art />}
+        {widget == "swap" && <Swap />}
+        {widget == "history" && <History />}
+        {widget == "network" && <Network />}
       </div>
 
       <div className="bottom-nav-wrapper !drop-shadow-2xl !w-full">
@@ -54,43 +72,77 @@ export default function App() {
           <div
             aria-label="Home"
             role="button"
+            data-widget="home"
             onClick={() => setWidget("home")}
-            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${widget == "home" && "text-slate-100"}`}
+            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${
+              widget == "home" && "text-slate-100"
+            }`}
           >
             <AiFillDollarCircle size={24} />
           </div>
           <div
             aria-label="Art"
             role="button"
+            data-widget="art"
             onClick={() => setWidget("art")}
-            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${widget == "art" && "text-slate-100"}`}
+            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${
+              widget == "art" && "text-slate-100"
+            }`}
           >
             <BiSolidDashboard size={24} />
           </div>
           <div
             aria-label="Swap"
             role="button"
+            data-widget="swap"
             onClick={() => setWidget("swap")}
-            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${widget == "swap" && "text-slate-100"}`}
+            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${
+              widget == "swap" && "text-slate-100"
+            }`}
           >
             <AiOutlineSwap size={24} />
           </div>
           <div
             aria-label="History"
             role="button"
+            data-widget="history"
             onClick={() => setWidget("history")}
-            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${widget == "history" && "text-slate-100"}`}
+            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${
+              widget == "history" && "text-slate-100"
+            }`}
           >
             <BiHistory size={24} />
           </div>
           <div
             aria-label="Network"
             role="button"
+            data-widget="network"
             onClick={() => setWidget("network")}
-            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${widget == "network" && "text-slate-100"}`}
+            className={`bottom-nav-item text-gray-600 hover:text-slate-100 ${
+              widget == "network" && "text-slate-100"
+            }`}
           >
             <AiOutlineGlobal size={24} />
           </div>
+          {/** there is no math here, so there would be imperfections */}
+          <div
+            className="active-tab-line"
+            style={{
+              left: `${
+                widget === "home"
+                  ? "16px"
+                  : widget === "art"
+                  ? "85px"
+                  : widget === "swap"
+                  ? "152px"
+                  : widget === "history"
+                  ? "223px"
+                  : widget === "network"
+                  ? "289px"
+                  : "-200px"
+              }`,
+            }}
+          ></div>
         </div>
       </div>
     </>

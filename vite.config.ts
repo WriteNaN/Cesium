@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, splitVendorChunkPlugin } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react-swc";
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
@@ -12,11 +12,13 @@ export default defineConfig({
       globals: {
         Buffer: true
       }
-    })
+    }),
+    splitVendorChunkPlugin()
   ],
   build: {
     minify: true,
     cssMinify: true,
+    cssCodeSplit: true,
     rollupOptions: {
       input: {
         popup: resolve(__dirname, "popup.html"),

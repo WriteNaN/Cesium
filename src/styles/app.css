@@ -77,3 +77,12 @@
   justify-content: center;
   transition: color 0.3s ease;
 }
+
+.active-tab-line {
+  position: absolute;
+  top: 0;
+  height: 2px;
+  background-color: rgb(0, 183, 255);
+  transition: left 0.3s ease-in-out;
+  width: 15%;
+}
