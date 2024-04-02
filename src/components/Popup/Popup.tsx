@@ -4,7 +4,7 @@ import PopupWrapper from "./Wrapper";
 import Lockscreen from "./Lock";
 import InitializeScreen from "./Initialize";
 
-import { HashLoader as HashSpinner } from "react-spinners";
+import { ClipLoader as HashSpinner } from "react-spinners";
 
 import { getLocalStorage, getSessionValue } from "../../utils/storage";
 
@@ -62,7 +62,7 @@ export default function Popup() {
             </>
           ) : (
             <>
-              <div className="absolute inset-0 !z-50 flex !h-screen !w-screen items-center justify-center bg-black/90">
+              <div className="absolute inset-0 !z-50 flex !h-screen !w-screen items-center justify-center bg-black">
                 <HashSpinner size={80} color="#ffffff" loading={true} />
               </div>
             </>
