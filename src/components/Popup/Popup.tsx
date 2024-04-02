@@ -73,6 +73,8 @@ export default function Popup() {
   );
 }
 
+*/
+
 // */ // Lets talk about this some other day
 /*import Lockscreen from "./Lock";
 import PopupWrapper from "./Wrapper";

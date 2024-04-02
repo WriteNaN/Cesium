@@ -30,7 +30,9 @@ export default function App() {
             { isNavOpen ? <FaBarsStaggered size={16} className="!text-slate-500 transform scale-x-[-1]" /> : <FaBars size={16} className="!text-slate-500" />}
           </div>
         </div>
-        <div className="app-nav-c"></div>
+        <div className="app-nav-c">
+         { (widget == "network") && <p className="text-white text-sm cursor-pointer select-none">Active Networks</p>}
+        </div>
       </section>
 
       <div className="w-full h-full" onClick={() => isNavOpen ? setNavOpen(false) : null}> 
