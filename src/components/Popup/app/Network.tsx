@@ -176,7 +176,7 @@ export default function Network() {
         </div>
       </div>
 
-      <div className="relative overflow-y-auto bg-gradient-to-r from-slate-800 to-gray-800 p-2 mt-3 rounded-md h-[400px] overflow-y-scroll overflow-x-hidden">
+      <div style={{backgroundColor: 'rgb(12, 12, 16)'}} className="relative overflow-y-auto p-2 mt-3 rounded-md h-[400px] overflow-y-scroll overflow-x-hidden">
         {knownNetworks
           .filter(
             (network) =>
@@ -247,9 +247,9 @@ export default function Network() {
               role="button"
               onClick={() => document.getElementById("logoFile")?.click()}
             >
-              <div className="bg-slate-700 hover:bg-slate-600 transition-colors flex flex-row justify-center p-2 align-center rounded-full">
+              <div className="bg-slate-700 hover:bg-slate-600 transition-colors flex flex-row justify-center items-center p-2 align-center rounded-full">
                 <BiUpload size={24} />
-                <span>&nbsp;Upload Image</span>
+                <span className="text-center align-center items-center">&nbsp;Upload Image</span>
               </div>
             </label>
             <input
