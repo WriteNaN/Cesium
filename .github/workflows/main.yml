@@ -21,6 +21,7 @@ jobs:
                   ${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }} \
                   | jq -r '.body')
           echo "::set-output name=body::$BODY"
+          echo "Pull Request Body: $BODY"  # Debug message
 
       - name: Add Version and Get Changes
         id: increment_version
@@ -28,6 +29,10 @@ jobs:
           bash ./scripts/increment_version.sh "${{ steps.pr_body.outputs.body }}"
         env:
           VERSION_CHANGES: ${{ steps.increment_version.outputs.stdout }}
+          VERSION_NUMBER: ${{ steps.increment_version.outputs.version }}
+          # Debug messages
+          echo "Incremented Version Number: $VERSION_NUMBER"
+          echo "Changes in this Release: $VERSION_CHANGES"
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -44,8 +49,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.increment_version.outputs.version }}
-          release_name: Release ${{ steps.increment_version.outputs.version }}
+          tag_name: ${{ env.VERSION_NUMBER }}  
+          release_name: Release ${{ env.VERSION_NUMBER }} 
           body: |
             Changes in this Release:
             ${{ env.VERSION_CHANGES }}
