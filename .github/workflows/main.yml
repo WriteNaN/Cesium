@@ -20,14 +20,15 @@ jobs:
                   -H "Accept: application/vnd.github.v3+json" \
                   ${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }} \
                   | jq -r '.body')
-          echo "::set-output name=body::$BODY"
           echo "Pull Request Body: $BODY"  # Debug message
+          echo "BODY=$BODY" >> $GITHUB_ENV
 
-      - name: Increment Version
-        id: increment_version
+      - name: Extract Version and Changes
+        id: extract_version_and_changes
         run: |
           VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.body }}")
-          echo "::set-output name=version_changes::$VERSION_CHANGES"
+          echo "Extracted Version and Changes: $VERSION_CHANGES"  # Debug message
+          echo "VERSION_CHANGES=$VERSION_CHANGES" >> $GITHUB_ENV
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -43,12 +44,14 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION_NUMBER: ${{ steps.extract_version_and_changes.outputs.version }}
+          VERSION_CHANGES: ${{ steps.extract_version_and_changes.outputs.changes }}
         with:
-          tag_name: ${{ github.event.number }}-${{ steps.increment_version.outputs.version }}
-          release_name: Release ${{ steps.increment_version.outputs.version }}
+          tag_name: ${{ github.event.number }}-${{ env.VERSION_NUMBER }}
+          release_name: Release ${{ env.VERSION_NUMBER }}
           body: |
             Changes in this Release:
-            ${{ steps.increment_version.outputs.version_changes }}
+            ${{ env.VERSION_CHANGES }}
           draft: false
           prerelease: false
 
