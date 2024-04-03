@@ -13,6 +13,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Extract Tag and Commit Message Body
+      id: extract_info
+      run: |
+        TAG=$(git tag --points-at HEAD)
+        BODY=$(git show -s --format=%b)
+        echo "::set-output name=tag::$TAG"
+        echo "::set-output name=body::$BODY"
+
     - name: Set up Bun
       uses: oven-sh/setup-bun@v1
       with:
@@ -28,5 +36,7 @@ jobs:
       uses: "softprops/action-gh-release@v1"
       with:
         files: dist/*
+        tag_name: ${{ steps.extract_info.outputs.tag }}
+        body: ${{ steps.extract_info.outputs.body }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
