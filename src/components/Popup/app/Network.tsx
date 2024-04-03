@@ -23,12 +23,45 @@ interface Network {
 
 export default function Network() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [knownNetworks, setKnownNetworks] = useState<Network[]>([]);
+  const [knownNetworks, setKnownNetworks] = useState<Network[]>([
+    {
+      ticker: "XNO",
+      name: "Nano",
+      logo: "img/crypto/nano.png",
+      ws: "wss://node.somenano.com/websocket",
+      rpc: "https://rpc.nano.to",
+      enabled: true
+    },
+    {
+      ticker: "BAN",
+      name: "Banano",
+      logo: "img/crypto/banano.png",
+      ws: "wss://node.somenano.com/websocket",
+      rpc: "https://rpc.nano.to",
+      enabled: true
+    },
+    {
+      ticker: "XDG",
+      name: "Dogenano",
+      logo: "img/crypto/dogenano.png",
+      ws: "wss://node.somenano.com/websocket",
+      rpc: "https://rpc.nano.to",
+      enabled: true
+    },
+    {
+      ticker: "XRO",
+      name: "Raione",
+      logo: "img/crypto/raione.jpg",
+      ws: "wss://node.somenano.com/websocket",
+      rpc: "https://rpc.nano.to",
+      enabled: true
+    }
+  ]);
   const [newNetwork, setNewNetwork] = useState<Network>({
     ticker: "",
     name: "",
     logo: null,
-    rpc: "",
+    rpc: "",     
     ws: "",
     enabled: false,
   });
@@ -47,6 +80,8 @@ export default function Network() {
       const storedNetworks = await getLocalStorage("knownNetworks");
       if (storedNetworks) {
         setKnownNetworks(JSON.parse(storedNetworks));
+      } else {
+        setLocalStorage("knownNetworks", JSON.stringify(knownNetworks));
       }
     })();
   }, []);
