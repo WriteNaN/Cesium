@@ -5,7 +5,7 @@ First off, thanks for taking the time to contribute! ❤️
 > And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 > - :star: Star the project
 > - 🐦 Share the word on your social media
-> - 💵 Support the project financially ([*link*](https://github.com/WriteNaN/Cesium/README.md#donate))
+> - 💵 Support the project financially ([*link*](https://github.com/WriteNaN/Cesium/blob/main/README.md#donate))
 
 ### By participating in this project,
 you agree to abide by the [**Code of Conduct**](https://github.com/WriteNaN/Cesium/blob/main/CODE_OF_CONDUCT.md) and [**License**](https://github.com/WriteNaN/Cesium/blob/main/LICENSE).
