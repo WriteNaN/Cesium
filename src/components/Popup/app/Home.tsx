@@ -11,7 +11,7 @@ export default function Home() {
             </div>
             <div className="h-c-s tauri-regular">
               <p>{"+<0.04%"}</p>
-              <span>$2.06</span>
+              <span>$2.08</span>
             </div>
           </div>
           <div className="hero-button-wrapper"></div>
