@@ -12,12 +12,12 @@ export default function Footer({
   shouldCall,
   setShouldCall,
   setInvalidPass,
-  setLoggedIn
+  setLoggedIn,
 }: {
   shouldCall: boolean;
   setShouldCall: React.Dispatch<React.SetStateAction<boolean>>;
   setInvalidPass: React.Dispatch<React.SetStateAction<boolean>>;
-  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+  setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -33,7 +33,9 @@ export default function Footer({
           const res = wallet.fromSeed(result); // just double check :D
           setInvalidPass(false);
           setSessionValue("masterSeed", res.seed);
-          setTimeout(() => { setLoggedIn(true) }, 100); // worst case, or your browser is bad for your pc's health;
+          setTimeout(() => {
+            setLoggedIn(true);
+          }, 100); // worst case, or your browser is bad for your pc's health;
         } catch {
           console.error("corrupted seed!");
           setInvalidPass(true);

@@ -1,7 +1,11 @@
 import Navbar from "../Lock/Navbar";
 import { Dispatch } from "react";
 
-export default function Start({ setW }: { setW: Dispatch<React.SetStateAction<number>> }) {
+export default function Start({
+  setW,
+}: {
+  setW: Dispatch<React.SetStateAction<number>>;
+}) {
   return (
     <div className="min-h-[554px]">
       <Navbar />
@@ -23,7 +27,9 @@ export default function Start({ setW }: { setW: Dispatch<React.SetStateAction<nu
                       href="https://nano.gift/"
                       onClick={(e) => {
                         e.preventDefault();
-                        return chrome.tabs.create({ url: 'https://nano.gift/?referrer=caesium'});
+                        return chrome.tabs.create({
+                          url: "https://nano.gift/?referrer=caesium",
+                        });
                       }}
                       className="text-blue-500 hover:underline"
                       target="_blank"
@@ -42,11 +48,19 @@ export default function Start({ setW }: { setW: Dispatch<React.SetStateAction<nu
           </div>
 
           <div className="buttons-wrapper">
-            <div className="button-create" role="button" onClick={() => setW(1)}>
+            <div
+              className="button-create"
+              role="button"
+              onClick={() => setW(1)}
+            >
               Create a new wallet
             </div>
 
-            <div className="button-restore" role="button" onClick={() => setW(4)}>
+            <div
+              className="button-restore"
+              role="button"
+              onClick={() => setW(4)}
+            >
               I already have a wallet
             </div>
           </div>

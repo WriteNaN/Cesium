@@ -62,8 +62,8 @@ export default function ImportPassword({
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"
           onClick={() => {
-          setSessionValue('password', password);
-          return setW(4);
+            setSessionValue("password", password);
+            return setW(4);
           }}
         >
           <IoArrowBack size={20} />
@@ -82,7 +82,7 @@ export default function ImportPassword({
             e.preventDefault();
             if (passwordMatch && !(confirmPassword == "")) {
               setSessionValue("password", password);
-              return setW(420); 
+              return setW(420);
             }
             return;
           }}

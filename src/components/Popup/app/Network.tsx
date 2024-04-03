@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import {
   BiSearchAlt,
   BiPlus,
-  BiMinus,
   BiEdit,
   BiUpload,
   BiImageAdd,
+  BiTrash,
 } from "react-icons/bi";
 import { IoArrowBack } from "react-icons/io5";
 import { getLocalStorage, setLocalStorage } from "../../../utils/storage";
@@ -28,7 +28,7 @@ export default function Network() {
     ticker: "",
     name: "",
     logo: null,
-    rpc: "",     
+    rpc: "",
     ws: "",
     enabled: false,
   });
@@ -58,7 +58,7 @@ export default function Network() {
             logo: "img/crypto/nano.png",
             ws: "wss://node.somenano.com/websocket",
             rpc: "https://rpc.nano.to",
-            enabled: true
+            enabled: true,
           },
           {
             ticker: "BAN",
@@ -66,7 +66,7 @@ export default function Network() {
             logo: "img/crypto/banano.png",
             ws: "wss://node.somenano.com/websocket",
             rpc: "https://rpc.nano.to",
-            enabled: true
+            enabled: true,
           },
           {
             ticker: "XDG",
@@ -74,7 +74,7 @@ export default function Network() {
             logo: "img/crypto/dogenano.png",
             ws: "wss://node.somenano.com/websocket",
             rpc: "https://rpc.nano.to",
-            enabled: true
+            enabled: true,
           },
           {
             ticker: "XRO",
@@ -82,8 +82,8 @@ export default function Network() {
             logo: "img/crypto/raione.jpg",
             ws: "wss://node.somenano.com/websocket",
             rpc: "https://rpc.nano.to",
-            enabled: true
-          }
+            enabled: true,
+          },
         ]);
         setLocalStorage("knownNetworks", JSON.stringify(knownNetworks));
       }
@@ -97,6 +97,14 @@ export default function Network() {
 
   const handleAddNetwork = () => {
     setShowAddNetwork(true);
+  };
+
+  const handleRemoveNetwork = (ticker: string) => {
+    const updatedNetworks = knownNetworks.filter(
+      (network) => network.ticker !== ticker
+    );
+    setKnownNetworks(updatedNetworks);
+    setLocalStorage("knownNetworks", JSON.stringify(updatedNetworks));
   };
 
   const handleGoBack = () => {
@@ -121,7 +129,7 @@ export default function Network() {
       };
       reader.readAsDataURL(file);
     }
-  };  
+  };
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (showEditNetwork) {
@@ -160,7 +168,8 @@ export default function Network() {
       newNetwork.name &&
       newNetwork.ticker &&
       newNetwork.rpc &&
-      newNetwork.ws
+      newNetwork.ws &&
+      !knownNetworks.find((network) => network.ticker === newNetwork.ticker) // Check if ticker already exists
     ) {
       const updatedNetworks = [...knownNetworks, newNetwork];
       setKnownNetworks(updatedNetworks);
@@ -191,15 +200,17 @@ export default function Network() {
   const handleSaveChanges = () => {
     if (editedNetwork) {
       const updatedNetworks = knownNetworks.map((network) =>
-        network.ticker === editedNetwork.ticker ? {
-          ...network,
-          name: editedName,
-          ticker: editedTicker,
-          logo: editedLogo,
-          rpc: editedRPC,
-          ws: editedWS,
-          enabled: editedEnabled
-        } : network
+        network.ticker === editedNetwork.ticker
+          ? {
+              ...network,
+              name: editedName,
+              ticker: editedTicker,
+              logo: editedLogo,
+              rpc: editedRPC,
+              ws: editedWS,
+              enabled: editedEnabled,
+            }
+          : network
       );
       setKnownNetworks(updatedNetworks);
       setLocalStorage("knownNetworks", JSON.stringify(updatedNetworks));
@@ -234,7 +245,10 @@ export default function Network() {
         </div>
       </div>
 
-      <div style={{backgroundColor: 'rgb(12, 12, 16)'}} className="relative overflow-y-auto p-2 mt-3 rounded-md h-[400px] overflow-y-scroll overflow-x-hidden">
+      <div
+        style={{ backgroundColor: "rgb(12, 12, 16)" }}
+        className="relative overflow-y-auto p-2 mt-3 rounded-md h-[400px] overflow-y-scroll overflow-x-hidden"
+      >
         {knownNetworks
           .filter(
             (network) =>
@@ -256,9 +270,22 @@ export default function Network() {
                 <p className="text-xs text-gray-500">{network.ticker}</p>
               </div>
               <div className="flex-grow" />
-              <button className="text-xs text-blue-500 hover:text-blue-300" onClick={() => handleEditNetwork(network)}>
-                <BiEdit size={18} />
-              </button>
+              <div className="flex items-center space-x-2">
+                <button
+                  className="text-xs text-blue-500 hover:text-blue-300"
+                  onClick={() => handleEditNetwork(network)}
+                >
+                  <BiEdit size={18} />
+                </button>
+                {knownNetworks.length > 1 && ( // disable remove button when there's only one network left
+                  <button
+                    className="text-xs text-red-500 hover:text-red-300"
+                    onClick={() => handleRemoveNetwork(network.ticker)}
+                  >
+                    <BiTrash size={18} />
+                  </button>
+                )}
+              </div>
             </div>
           ))}
         {knownNetworks.filter(
@@ -305,11 +332,18 @@ export default function Network() {
             <label
               htmlFor="logoFile"
               role="button"
-              onClick={() => setTimeout(() => document.getElementById("logoFile")?.click(), 200)}
+              onClick={() =>
+                setTimeout(
+                  () => document.getElementById("logoFile")?.click(),
+                  200
+                )
+              }
             >
               <div className="bg-slate-700 hover:bg-slate-600 transition-colors flex flex-row justify-center items-center p-2 align-center rounded-full">
                 <BiUpload size={24} />
-                <span className="text-center align-center items-center">&nbsp;Upload Image</span>
+                <span className="text-center align-center items-center">
+                  &nbsp;Upload Image
+                </span>
               </div>
             </label>
             <input
@@ -361,25 +395,31 @@ export default function Network() {
               aria-autocomplete="none"
               className="w-full px-4 py-2 border border-gray-800 outline-none focus:border-transparent rounded-lg bg-black/70 focus:outline-none focus:ring focus:border-blue-300"
             />
-            {showEditNetwork && (
-              <div className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={editedEnabled}
-                  onChange={(e) => setEditedEnabled(e.target.checked)}
-                />
-                <p>Enabled</p>
+            {/** I'll come back to this some other day. */}
+            {/* {showEditNetwork && (
+              <div className="flex items-center m-2">
+                <div className="w-full flex flex-row items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={editedEnabled}
+                    onChange={(e) => setEditedEnabled(e.target.checked)}
+                    className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                  />
+                  <span className="text-sm text-gray-400">Enabled</span>
+                </div>
               </div>
-            )}
+            )} */}
             <button
               onClick={showEditNetwork ? handleSaveChanges : handleAddNetworkX}
               className="btn bg-blue-500 p-2 rounded-md hover:bg-blue-400 transition-colors text-white"
             >
               {showEditNetwork ? "Save Changes" : "Add Network"}
             </button>
-            { showEditNetwork && (
-              <button onClick={handleDiscardChanges}
-              className="btn bg-red-500 p-2 rounded-md hover:bg-red-400 transition-colors text-white">
+            {showEditNetwork && (
+              <button
+                onClick={handleDiscardChanges}
+                className="btn bg-red-500 p-2 rounded-md hover:bg-red-400 transition-colors text-white"
+              >
                 Discard Changes
               </button>
             )}

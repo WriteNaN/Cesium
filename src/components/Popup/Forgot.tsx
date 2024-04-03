@@ -29,7 +29,10 @@ export default function Forgot({
       <div className="forgot-c-w !p-3">
         <div />
         <section className="forgot-c-s">
-          <BiLockAlt size={128} className="!mb-3 p-6 bg-black/50 rounded-full" />
+          <BiLockAlt
+            size={128}
+            className="!mb-3 p-6 bg-black/50 rounded-full"
+          />
           <p className="forgot-p-c-s-p !mb-2">Forgot Password</p>
           <p className="f-p-c">
             You can reset your password by entering your wallet's 24 word
@@ -38,10 +41,15 @@ export default function Forgot({
         </section>
 
         <div className="w-full">
-          <button className="f-p-c-b hover:!bg-red-400" onClick={() => {
-            resetWallet();
-            return window.location.reload();
-          }}>Reset Secret Phrase</button>
+          <button
+            className="f-p-c-b hover:!bg-red-400"
+            onClick={() => {
+              resetWallet();
+              return window.location.reload();
+            }}
+          >
+            Reset Secret Phrase
+          </button>
         </div>
       </div>
     </>

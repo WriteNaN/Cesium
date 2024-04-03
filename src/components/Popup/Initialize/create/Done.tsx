@@ -98,7 +98,10 @@ export default function Created({
               </p>
 
               <div className="ml-2 mr-2 flex justify-center">
-                <button className="absolute bottom-0 mb-4 w-11/12 rounded-md hover:bg-blue-400 !text-black p-3 bg-blue-500" onClick={() => window.location.reload()}>
+                <button
+                  className="absolute bottom-0 mb-4 w-11/12 rounded-md hover:bg-blue-400 !text-black p-3 bg-blue-500"
+                  onClick={() => window.location.reload()}
+                >
                   Get Started
                 </button>
               </div>

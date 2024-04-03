@@ -4,7 +4,7 @@ export default function Form({
   goForth,
   handleSubmit,
   invalidPass,
-  setInvalidPass
+  setInvalidPass,
 }: {
   goForth: Dispatch<SetStateAction<boolean>>;
   handleSubmit: () => any;
@@ -19,9 +19,9 @@ export default function Form({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [setInvalidPass]);
 
@@ -51,7 +51,9 @@ export default function Form({
           <div style={{ width: "100%", transform: "none" }}>
             <div className="w-full">
               <input
-                className={`relative select-text z-10 unlock-form-input ${invalidPass && 'invalid-password'}`}
+                className={`relative select-text z-10 unlock-form-input ${
+                  invalidPass && "invalid-password"
+                }`}
                 type="password"
                 id="unlock-pass"
                 placeholder="Password"

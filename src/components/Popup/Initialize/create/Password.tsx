@@ -78,8 +78,8 @@ export default function Password({
           onSubmit={(e) => {
             e.preventDefault();
             if (passwordMatch && !(confirmPassword == "")) {
-                setSessionValue("password", password);
-                return setW(2);
+              setSessionValue("password", password);
+              return setW(2);
             }
             return;
           }}
@@ -136,8 +136,13 @@ export default function Password({
           </div>
 
           <div className="absolute top-0 flex items-center flex-col align-center justify-center w-full mt-8 p-3 bg-black/30 rounded-md">
-            <p className="text-xs text-slate-400"><span className="font-bold text-slate-300">Never</span>{" "}share this password</p>
-            <p className="text-xs text-slate-400">your seed is to be encrypted with it.</p>
+            <p className="text-xs text-slate-400">
+              <span className="font-bold text-slate-300">Never</span> share this
+              password
+            </p>
+            <p className="text-xs text-slate-400">
+              your seed is to be encrypted with it.
+            </p>
           </div>
         </form>
       </div>

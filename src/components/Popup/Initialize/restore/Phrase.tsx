@@ -7,8 +7,8 @@ import { tools, wallet } from "multi-nano-web";
 
 import { setSessionValue } from "../../../../utils/storage";
 
-import { Bounce, ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "../../../../styles/restore.css";
 
@@ -126,9 +126,12 @@ export default function ImportPhrase({
               e.preventDefault();
               if (canContinue) {
                 if (tools.validateMnemonic(mnemonicInputs.join(" "))) {
-                  setSessionValue("mnemonic", wallet.fromMnemonic(mnemonicInputs.join(" ")).seed);
+                  setSessionValue(
+                    "mnemonic",
+                    wallet.fromMnemonic(mnemonicInputs.join(" ")).seed
+                  );
                   return setW(5);
-                } 
+                }
                 // todo
               }
               return;
@@ -140,13 +143,13 @@ export default function ImportPhrase({
       </div>
 
       <ToastContainer
-      position="top-center"
-      autoClose={1000}
-      className="select-none"
-      hideProgressBar={false}
-      transition={Bounce}
-      theme="dark"
-      pauseOnHover={false}
+        position="top-center"
+        autoClose={1000}
+        className="select-none"
+        hideProgressBar={false}
+        transition={Bounce}
+        theme="dark"
+        pauseOnHover={false}
       />
     </>
   );
