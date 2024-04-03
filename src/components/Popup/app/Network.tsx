@@ -23,40 +23,7 @@ interface Network {
 
 export default function Network() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [knownNetworks, setKnownNetworks] = useState<Network[]>([
-    {
-      ticker: "XNO",
-      name: "Nano",
-      logo: "img/crypto/nano.png",
-      ws: "wss://node.somenano.com/websocket",
-      rpc: "https://rpc.nano.to",
-      enabled: true
-    },
-    {
-      ticker: "BAN",
-      name: "Banano",
-      logo: "img/crypto/banano.png",
-      ws: "wss://node.somenano.com/websocket",
-      rpc: "https://rpc.nano.to",
-      enabled: true
-    },
-    {
-      ticker: "XDG",
-      name: "Dogenano",
-      logo: "img/crypto/dogenano.png",
-      ws: "wss://node.somenano.com/websocket",
-      rpc: "https://rpc.nano.to",
-      enabled: true
-    },
-    {
-      ticker: "XRO",
-      name: "Raione",
-      logo: "img/crypto/raione.jpg",
-      ws: "wss://node.somenano.com/websocket",
-      rpc: "https://rpc.nano.to",
-      enabled: true
-    }
-  ]);
+  const [knownNetworks, setKnownNetworks] = useState<Network[]>([]);
   const [newNetwork, setNewNetwork] = useState<Network>({
     ticker: "",
     name: "",
@@ -67,6 +34,7 @@ export default function Network() {
   });
 
   const [showAddNetwork, setShowAddNetwork] = useState<boolean>(false);
+  const [showEditNetwork, setShowEditNetwork] = useState<boolean>(false);
 
   const [editedNetwork, setEditedNetwork] = useState<Network | null>(null);
   const [editedName, setEditedName] = useState<string>("");
@@ -74,16 +42,53 @@ export default function Network() {
   const [editedLogo, setEditedLogo] = useState<string | null>(null);
   const [editedRPC, setEditedRPC] = useState<string>("");
   const [editedWS, setEditedWS] = useState<string>("");
+  const [editedEnabled, setEditedEnabled] = useState<boolean>(false);
 
   useEffect(() => {
-    (async () => {
+    // Fetch data from local storage or set default if not found
+    const fetchData = async () => {
       const storedNetworks = await getLocalStorage("knownNetworks");
       if (storedNetworks) {
         setKnownNetworks(JSON.parse(storedNetworks));
       } else {
+        setKnownNetworks([
+          {
+            ticker: "XNO",
+            name: "Nano",
+            logo: "img/crypto/nano.png",
+            ws: "wss://node.somenano.com/websocket",
+            rpc: "https://rpc.nano.to",
+            enabled: true
+          },
+          {
+            ticker: "BAN",
+            name: "Banano",
+            logo: "img/crypto/banano.png",
+            ws: "wss://node.somenano.com/websocket",
+            rpc: "https://rpc.nano.to",
+            enabled: true
+          },
+          {
+            ticker: "XDG",
+            name: "Dogenano",
+            logo: "img/crypto/dogenano.png",
+            ws: "wss://node.somenano.com/websocket",
+            rpc: "https://rpc.nano.to",
+            enabled: true
+          },
+          {
+            ticker: "XRO",
+            name: "Raione",
+            logo: "img/crypto/raione.jpg",
+            ws: "wss://node.somenano.com/websocket",
+            rpc: "https://rpc.nano.to",
+            enabled: true
+          }
+        ]);
         setLocalStorage("knownNetworks", JSON.stringify(knownNetworks));
       }
-    })();
+    };
+    fetchData();
   }, []);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +101,7 @@ export default function Network() {
 
   const handleGoBack = () => {
     setShowAddNetwork(false);
+    setShowEditNetwork(false);
   };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,7 +112,11 @@ export default function Network() {
       reader.onloadend = () => {
         const base64String = reader.result?.toString();
         if (base64String) {
-          setNewNetwork({ ...newNetwork, logo: base64String });
+          if (showEditNetwork) {
+            setEditedLogo(base64String);
+          } else {
+            setNewNetwork({ ...newNetwork, logo: base64String });
+          }
         }
       };
       reader.readAsDataURL(file);
@@ -114,19 +124,35 @@ export default function Network() {
   };  
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewNetwork({ ...newNetwork, name: event.target.value });
+    if (showEditNetwork) {
+      setEditedName(event.target.value);
+    } else {
+      setNewNetwork({ ...newNetwork, name: event.target.value });
+    }
   };
 
   const handleTickerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewNetwork({ ...newNetwork, ticker: event.target.value });
+    if (showEditNetwork) {
+      setEditedTicker(event.target.value);
+    } else {
+      setNewNetwork({ ...newNetwork, ticker: event.target.value });
+    }
   };
 
   const handleRPCChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewNetwork({ ...newNetwork, rpc: event.target.value });
+    if (showEditNetwork) {
+      setEditedRPC(event.target.value);
+    } else {
+      setNewNetwork({ ...newNetwork, rpc: event.target.value });
+    }
   };
 
   const handleWSChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNewNetwork({ ...newNetwork, ws: event.target.value });
+    if (showEditNetwork) {
+      setEditedWS(event.target.value);
+    } else {
+      setNewNetwork({ ...newNetwork, ws: event.target.value });
+    }
   };
 
   const handleAddNetworkX = () => {
@@ -152,12 +178,14 @@ export default function Network() {
   };
 
   const handleEditNetwork = (network: Network) => {
+    setShowEditNetwork(true);
     setEditedNetwork(network);
     setEditedName(network.name);
     setEditedTicker(network.ticker);
     setEditedLogo(network.logo);
     setEditedRPC(network.rpc);
     setEditedWS(network.ws);
+    setEditedEnabled(network.enabled);
   };
 
   const handleSaveChanges = () => {
@@ -169,31 +197,26 @@ export default function Network() {
           ticker: editedTicker,
           logo: editedLogo,
           rpc: editedRPC,
-          ws: editedWS
+          ws: editedWS,
+          enabled: editedEnabled
         } : network
       );
       setKnownNetworks(updatedNetworks);
       setLocalStorage("knownNetworks", JSON.stringify(updatedNetworks));
+      setShowEditNetwork(false);
       setEditedNetwork(null);
     }
   };
 
   const handleDiscardChanges = () => {
+    setShowEditNetwork(false);
     setEditedNetwork(null);
     setEditedName("");
     setEditedTicker("");
     setEditedLogo(null);
     setEditedRPC("");
     setEditedWS("");
-  };
-
-  const toggleNetwork = (network: Network) => {
-    if (network.name === "Nano" && network.ticker.toLowerCase() == "xno") return; // Nano network should always be enabled
-    const updatedNetworks = knownNetworks.map((n) =>
-      n.ticker === network.ticker ? { ...n, enabled: !n.enabled } : n
-    );
-    setKnownNetworks(updatedNetworks);
-    setLocalStorage("knownNetworks", JSON.stringify(updatedNetworks));
+    setEditedEnabled(false);
   };
 
   return (
@@ -233,7 +256,7 @@ export default function Network() {
                 <p className="text-xs text-gray-500">{network.ticker}</p>
               </div>
               <div className="flex-grow" />
-              <button className="text-xs text-blue-500 hover:text-blue-300">
+              <button className="text-xs text-blue-500 hover:text-blue-300" onClick={() => handleEditNetwork(network)}>
                 <BiEdit size={18} />
               </button>
             </div>
@@ -257,7 +280,7 @@ export default function Network() {
         )}
       </div>
 
-      {showAddNetwork && (
+      {(showAddNetwork || showEditNetwork) && (
         <div
           style={{ background: "rgb(16, 16, 20)" }}
           className="absolute z-50 top-0 left-0 h-full w-full p-4 rounded-t-lg transition-all transform translate-y-0"
@@ -271,7 +294,9 @@ export default function Network() {
           <div className="flex flex-col space-y-4 mt-4 pb-5">
             {/** preview */}
             <div className="flex flex-row align-center rounded-full bg-transparent justify-center">
-              {newNetwork.logo ? (
+              {showEditNetwork && editedLogo ? (
+                <img src={editedLogo} className="h-48 w-auto" />
+              ) : newNetwork.logo ? (
                 <img src={newNetwork.logo} className="h-48 w-auto" />
               ) : (
                 <BiImageAdd className="h-48 w-auto" />
@@ -280,7 +305,7 @@ export default function Network() {
             <label
               htmlFor="logoFile"
               role="button"
-              onClick={() => document.getElementById("logoFile")?.click()}
+              onClick={() => setTimeout(() => document.getElementById("logoFile")?.click(), 200)}
             >
               <div className="bg-slate-700 hover:bg-slate-600 transition-colors flex flex-row justify-center items-center p-2 align-center rounded-full">
                 <BiUpload size={24} />
@@ -298,6 +323,7 @@ export default function Network() {
               <input
                 type="text"
                 placeholder="Name"
+                value={showEditNetwork ? editedName : newNetwork.name}
                 onInput={handleNameChange}
                 autoComplete="false"
                 autoCorrect="false"
@@ -307,16 +333,18 @@ export default function Network() {
               <input
                 type="text"
                 autoComplete="false"
+                placeholder="Ticker"
+                value={showEditNetwork ? editedTicker : newNetwork.ticker}
                 onInput={handleTickerChange}
                 autoCorrect="false"
                 aria-autocomplete="none"
-                placeholder="Ticker"
                 className="w-1/3 px-4 py-2 border border-gray-800 outline-none focus:border-transparent rounded-lg bg-black/70 focus:outline-none focus:ring focus:border-blue-300"
               />
             </div>
             <input
               type="text"
               placeholder="RPC URL"
+              value={showEditNetwork ? editedRPC : newNetwork.rpc}
               onInput={handleRPCChange}
               autoComplete="false"
               autoCorrect="false"
@@ -325,19 +353,36 @@ export default function Network() {
             />
             <input
               type="text"
-              placeholder="WS URL"
+              placeholder="Websocket URI"
+              value={showEditNetwork ? editedWS : newNetwork.ws}
               onInput={handleWSChange}
               autoComplete="false"
               autoCorrect="false"
               aria-autocomplete="none"
               className="w-full px-4 py-2 border border-gray-800 outline-none focus:border-transparent rounded-lg bg-black/70 focus:outline-none focus:ring focus:border-blue-300"
             />
+            {showEditNetwork && (
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={editedEnabled}
+                  onChange={(e) => setEditedEnabled(e.target.checked)}
+                />
+                <p>Enabled</p>
+              </div>
+            )}
             <button
-              onClick={handleAddNetworkX}
+              onClick={showEditNetwork ? handleSaveChanges : handleAddNetworkX}
               className="btn bg-blue-500 p-2 rounded-md hover:bg-blue-400 transition-colors text-white"
             >
-              Add Network
+              {showEditNetwork ? "Save Changes" : "Add Network"}
             </button>
+            { showEditNetwork && (
+              <button onClick={handleDiscardChanges}
+              className="btn bg-red-500 p-2 rounded-md hover:bg-red-400 transition-colors text-white">
+                Discard Changes
+              </button>
+            )}
           </div>
         </div>
       )}
