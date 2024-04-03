@@ -8,7 +8,9 @@
     "dev": "vite build --watch",
     "build": "bunx --bun vite build",
     "ui": "bunx --bun vite dev",
-    "export": "rm -f dist.zip && rm -rf dist && vite build && zip -r dist.zip dist",
+    "export": "rm -f dist.zip && rm -rf dist && rm -rf release && mkdir release && vite build && zip -r release/cesium.zip dist && bun run scripts/crx.ts",
+    "push": "git add . && git commit && git push",
+    "release": "bun export && bun push",
     "style": "prettier --check \"src/**/*.{ts,tsx}\"",
     "style:fix": "prettier --write \"src/**/*.{ts,tsx}\""
   },
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.7",
+    "@types/bun": "^1.0.12",
     "@types/chrome": "0.0.158",
     "@types/node": "^20.10.4",
     "@types/react": "^18.0.29",

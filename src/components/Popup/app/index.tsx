@@ -42,10 +42,11 @@ export default function App() {
           </div>
         </div>
         <div className="app-nav-c">
+        {widget == "home" && (
+            <span className="text-slate-400 text-xl select-none cursor-pointer">cesium</span>
+          )}
           {widget == "network" && (
-            <p className="text-white text-sm cursor-pointer select-none">
-              Active Networks
-            </p>
+            <span className="text-slate-400 text-md select-none cursor-pointer">Active Networks</span>
           )}
         </div>
       </section>

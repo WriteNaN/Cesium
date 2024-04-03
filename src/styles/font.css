@@ -1,10 +1,20 @@
 @font-face {
     font-family: 'Tauri';
-    src: url("fonts/tauri.ttf");
+    src: url("../../public/fonts/tauri.ttf");
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url("../../public/fonts/roboto/Roboto-Regular.ttf");
 }
 
 .tauri-regular {
   font-family: "Tauri", sans-serif;
   font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
   font-style: normal;
 }
