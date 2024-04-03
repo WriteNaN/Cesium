@@ -27,7 +27,7 @@ jobs:
         id: extract_version_and_changes
         run: |
           VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.BODY }}")
-          echo "Extracted Version and Changes: $VERSION_CHANGES"  # Debug message
+          echo "Extracted Version and Changes: $VERSION_CHANGES"  # Debug
           echo "VERSION_CHANGES=$VERSION_CHANGES" >> $GITHUB_ENV
 
       - name: Setup Cesium
