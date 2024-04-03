@@ -20,7 +20,7 @@ jobs:
                   -H "Accept: application/vnd.github.v3+json" \
                   ${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }} \
                   | jq -r '.body')
-          echo "Pull Request Body: $BODY"  # Debug message
+          echo "Pull Request Body: $BODY"  # Debug
           echo "BODY=$BODY" >> $GITHUB_ENV
 
       - name: Extract Version and Changes
