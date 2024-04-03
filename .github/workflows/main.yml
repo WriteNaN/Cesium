@@ -25,7 +25,7 @@ jobs:
       - name: Add Version and Get Changes
         id: increment_version
         run: |
-          ./scripts/increment_version.sh "${{ steps.pr_body.outputs.body }}"
+          bash ./scripts/increment_version.sh "${{ steps.pr_body.outputs.body }}"
         env:
           VERSION_CHANGES: ${{ steps.increment_version.outputs.stdout }}
 
