@@ -13,9 +13,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Get Pull Request Body
+        id: pr_body
+        run: |
+          BODY=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                  -H "Accept: application/vnd.github.v3+json" \
+                  ${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }} \
+                  | jq -r '.body')
+          echo "::set-output name=body::$BODY"
+
+      - name: Increment Version and Get Changes
+        id: increment_version
+        run: |
+          ./increment_version.sh "${{ steps.pr_body.outputs.body }}"
+        env:
+          VERSION_CHANGES: ${{ steps.increment_version.outputs.stdout }}
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
-      
+
       - name: Install Bun dependencies
         run: bun install
 
@@ -28,12 +44,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ steps.increment_version.outputs.version }}
+          release_name: Release ${{ steps.increment_version.outputs.version }}
           body: |
-            Changes in this Release
-            - test
-            - test
+            Changes in this Release:
+            ${{ env.VERSION_CHANGES }}
           draft: false
           prerelease: false
 
