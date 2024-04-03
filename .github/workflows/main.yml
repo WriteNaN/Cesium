@@ -23,16 +23,11 @@ jobs:
           echo "::set-output name=body::$BODY"
           echo "Pull Request Body: $BODY"  # Debug message
 
-      - name: Add Version and Get Changes
+      - name: Increment Version
         id: increment_version
         run: |
-          bash ./scripts/increment_version.sh "${{ steps.pr_body.outputs.body }}"
-        env:
-          VERSION_CHANGES: ${{ steps.increment_version.outputs.stdout }}
-          VERSION_NUMBER: ${{ steps.increment_version.outputs.version }}
-          # Debug messages
-          echo "Incremented Version Number: $VERSION_NUMBER"
-          echo "Changes in this Release: $VERSION_CHANGES"
+          VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.body }}")
+          echo "::set-output name=version_changes::$VERSION_CHANGES"
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -49,11 +44,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.VERSION_NUMBER }}  
-          release_name: Release ${{ env.VERSION_NUMBER }} 
+          tag_name: ${{ github.event.number }}-${{ steps.increment_version.outputs.version }}
+          release_name: Release ${{ steps.increment_version.outputs.version }}
           body: |
             Changes in this Release:
-            ${{ env.VERSION_CHANGES }}
+            ${{ steps.increment_version.outputs.version_changes }}
           draft: false
           prerelease: false
 
