@@ -10,7 +10,7 @@ export default function Home() {
               <p></p>
             </div>
             <div className="h-c-s tauri-regular">
-              <p>{"+<0.04%"}</p>
+              <p>{""}</p>
               <span></span>
             </div>
           </div>
