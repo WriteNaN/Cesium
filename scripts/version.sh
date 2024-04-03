@@ -1,17 +1,11 @@
 #!/bin/bash
 
-increment_version() {
+extract_version_and_changes() {
     local body=$1
     local version=$(echo "$body" | grep -oE '^Version:\s*(.+)$' | sed -E 's/^Version:\s*(.+)$/\1/')
     local changes=$(echo "$body" | sed -n '/# Changes/,$p' | sed '1d')
-    local incremented_version=$(echo "$version" | awk -F. '{$NF++; OFS="."; print $0}')
-    
-    echo "Extracted Version: $version"
-    echo "Extracted Changes: $changes"
-    echo "Incremented Version: $incremented_version"
-    
-    echo "$incremented_version"
+    echo "$version"
     echo "$changes"
 }
 
-increment_version "$1"
+extract_version_and_changes "$1"
