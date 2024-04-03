@@ -22,7 +22,7 @@ jobs:
                   | jq -r '.body')
           echo "::set-output name=body::$BODY"
 
-      - name: Increment Version and Get Changes
+      - name: Add Version and Get Changes
         id: increment_version
         run: |
           ./scripts/increment_version.sh "${{ steps.pr_body.outputs.body }}"
