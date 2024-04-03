@@ -15,18 +15,22 @@ jobs:
 
       - name: Get Pull Request Body
         id: pr_body
-        run: |
-          BODY=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-                  -H "Accept: application/vnd.github.v3+json" \
-                  ${{ github.api_url }}/repos/${{ github.repository }}/pulls/${{ github.event.number }} \
-                  | jq -r '.body')
-          echo "Pull Request Body: $BODY"  # Debug
-          echo "BODY=$BODY" >> $GITHUB_ENV
+        uses: octokit/request-action@v2.x
+        env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          route: GET /repos/:owner/:repo/pulls/:pull_number
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.repository }}
+          pull_number: ${{ github.event.number }}
+
+      - name: Save Pull Request Body
+        run: echo "${{ steps.pr_body.outputs.data.body }}" > pr_body.txt
 
       - name: Extract Version and Changes
         id: extract_version_and_changes
         run: |
-          VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.BODY }}")
+          VERSION_CHANGES=$(bash ./scripts/version.sh "$(cat pr_body.txt)")
           echo "Extracted Version and Changes: $VERSION_CHANGES"  # Debug message
           echo "VERSION_CHANGES=$VERSION_CHANGES" >> $GITHUB_ENV
 
