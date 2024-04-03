@@ -10,7 +10,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v2
 
       - name: Get Pull Request Body
@@ -26,17 +26,17 @@ jobs:
       - name: Extract Version and Changes
         id: extract_version_and_changes
         run: |
-          VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.body }}")
+          VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.BODY }}")
           echo "Extracted Version and Changes: $VERSION_CHANGES"  # Debug message
           echo "VERSION_CHANGES=$VERSION_CHANGES" >> $GITHUB_ENV
 
-      - name: Setup Bun
+      - name: Setup Cesium
         uses: oven-sh/setup-bun@v1
 
-      - name: Install Bun dependencies
+      - name: Install Bun Dependencies
         run: bun install
 
-      - name: Export project using Bun
+      - name: Export Project using Bun
         run: bun export
 
       - name: Create Release
@@ -44,8 +44,8 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION_NUMBER: ${{ steps.extract_version_and_changes.outputs.version }}
-          VERSION_CHANGES: ${{ steps.extract_version_and_changes.outputs.changes }}
+          VERSION_NUMBER: ${{ steps.extract_version_and_changes.outputs.stdout }}
+          VERSION_CHANGES: ${{ steps.extract_version_and_changes.outputs.stdout }}
         with:
           tag_name: ${{ github.event.number }}-${{ env.VERSION_NUMBER }}
           release_name: Release ${{ env.VERSION_NUMBER }}
