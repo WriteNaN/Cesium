@@ -26,9 +26,8 @@ jobs:
       - name: Extract Version and Changes
         id: extract_version_and_changes
         run: |
-          VERSION_CHANGES=$(bash ./scripts/version.sh "${{ steps.pr_body.outputs.body }}")
+          VERSION_CHANGES=$(bash ./scripts/extract_version_and_changes.sh "${{ steps.pr_body.outputs.body }}")
           echo "Extracted Version and Changes: $VERSION_CHANGES"  # Debug message
-          echo "VERSION_CHANGES=$VERSION_CHANGES" >> $GITHUB_ENV
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
@@ -44,17 +43,15 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION_NUMBER: ${{ steps.extract_version_and_changes.outputs.version }}
-          VERSION_CHANGES: ${{ steps.extract_version_and_changes.outputs.changes }}
         with:
-          tag_name: ${{ github.event.number }}-${{ env.VERSION_NUMBER }}
-          release_name: Release ${{ env.VERSION_NUMBER }}
+          tag_name: ${{ github.event.number }}-${{ steps.extract_version_and_changes.outputs.version }}
+          release_name: Release ${{ steps.extract_version_and_changes.outputs.version }}
           body: |
             Changes in this Release:
-            ${{ env.VERSION_CHANGES }}
+            ${{ steps.extract_version_and_changes.outputs.changes }}
           draft: false
           prerelease: false
-
+          
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
