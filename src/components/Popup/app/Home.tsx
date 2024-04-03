@@ -7,11 +7,11 @@ export default function Home() {
         <div className="hero-wrapper">
           <div className="hero">
             <div className="h-c">
-              <p>$1200.33</p>
+              <p></p>
             </div>
             <div className="h-c-s tauri-regular">
               <p>{"+<0.04%"}</p>
-              <span>$2.08</span>
+              <span></span>
             </div>
           </div>
           <div className="hero-button-wrapper"></div>
