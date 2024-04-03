@@ -1,5 +1,6 @@
 dist
 dist.zip
+cesium.zip
 node_modules
 
 signer.pub

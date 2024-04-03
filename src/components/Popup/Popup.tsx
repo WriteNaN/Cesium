@@ -1,12 +1,12 @@
 import PopupWrapper from "./Wrapper";
 import App from "./app";
 
-export default function Popup () {
+export default function Popup() {
   return (
     <PopupWrapper>
       <App />
     </PopupWrapper>
-  )
+  );
 }
 
 /* import { useEffect, useState } from "react";

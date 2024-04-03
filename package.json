@@ -8,7 +8,7 @@
     "dev": "vite build --watch",
     "build": "bunx --bun vite build",
     "ui": "bunx --bun vite dev",
-    "export": "rm -f dist.zip && rm -rf dist && rm -rf release && mkdir release && vite build && zip -r release/cesium.zip dist && bun run scripts/crx.ts",
+    "export": "rm -f dist.zip && rm -rf dist && vite build && zip -r cesium.zip dist",
     "push": "git add . && git commit && git push",
     "release": "bun export && bun push",
     "style": "prettier --check \"src/**/*.{ts,tsx}\"",
