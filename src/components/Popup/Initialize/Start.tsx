@@ -3,13 +3,15 @@ import { Dispatch } from "react";
 
 export default function Start({
   setW,
+  theme
 }: {
   setW: Dispatch<React.SetStateAction<number>>;
+  theme: "dark" | "light";
 }) {
   return (
     <div className="min-h-[554px]">
-      <Navbar />
-      <div className="flex flex-col justify-between align-center p-[20px] h-full">
+      <Navbar theme={theme} />
+      <div className={`${theme == "light" && "!bg-white !text-black"} flex flex-col justify-between align-center p-[20px] h-full`}>
         <div className="init-wrapper">
           <div className="start-content">
             <div className="select-none items-center flex flex-col justify-center align-center w-full">
@@ -40,7 +42,7 @@ export default function Start({
                   </span>
                 </div>
               </div>
-              <p className="start-content-text">
+              <p className={`${theme =="light" && "!text-slate-700"} start-content-text`}>
                 To get started, create a new wallet or import one from a seed
                 phrase.
               </p>
@@ -49,7 +51,7 @@ export default function Start({
 
           <div className="buttons-wrapper">
             <div
-              className="button-create"
+              className={`${theme=="light" && "!text-slate-200"} button-create`}
               role="button"
               onClick={() => setW(1)}
             >
@@ -57,7 +59,7 @@ export default function Start({
             </div>
 
             <div
-              className="button-restore"
+              className={`${(theme=="light") && "!bg-slate-400 !text-slate-900 hover:!bg-slate-300"} button-restore`}
               role="button"
               onClick={() => setW(4)}
             >

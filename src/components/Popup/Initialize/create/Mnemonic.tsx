@@ -11,8 +11,10 @@ import { setSessionValue } from "../../../../utils/storage";
 
 export default function Mnemonic({
   setW,
+  theme
 }: {
   setW: Dispatch<React.SetStateAction<number>>;
+  theme: "light" | "dark";
 }) {
   const [checked, setChecked] = useState<boolean>(false);
   const [mnemonic, setMnemonic] = useState<string>("");
@@ -23,7 +25,7 @@ export default function Mnemonic({
   }, []);
   return (
     <>
-      <div className="step-p-nav">
+      <div className={`step-p-nav ${theme=="light" && "!bg-white !text-black !border-slate-400"}`}>
         <div
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"

@@ -8,16 +8,20 @@ import { wallet } from "multi-nano-web";
 import cryptoWorker from "../../../worker/crypto?worker&url";
 import { getLocalStorage, setSessionValue } from "../../../utils/storage";
 
+
+// theme added
 export default function Footer({
   shouldCall,
   setShouldCall,
   setInvalidPass,
   setLoggedIn,
+  theme
 }: {
   shouldCall: boolean;
   setShouldCall: React.Dispatch<React.SetStateAction<boolean>>;
   setInvalidPass: React.Dispatch<React.SetStateAction<boolean>>;
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  theme: "dark" | "light";
 }) {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -73,7 +77,7 @@ export default function Footer({
   }, [shouldCall]);
 
   return (
-    <div className="lockscreen-footer">
+    <div className={`lockscreen-footer ${theme == "light" && "!bg-white !text-black"}`}>
       <div className="w-full" tabIndex={0}>
         <button
           formTarget="unlock"

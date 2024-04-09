@@ -7,8 +7,10 @@ import { setSessionValue } from "../../../../utils/storage";
 
 export default function Password({
   setW,
+  theme
 }: {
   setW: Dispatch<React.SetStateAction<number>>;
+  theme: "light" | "dark";
 }) {
   const [passLen, setPassLen] = useState<number>(0);
   const [passwordStrength, setPasswordStrength] = useState<string>("");
@@ -57,7 +59,7 @@ export default function Password({
 
   return (
     <div>
-      <div className="step-p-nav">
+      <div className={`${theme=="light" && "!bg-white !text-black !border-slate-400"} step-p-nav`}>
         <div
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"
@@ -72,7 +74,7 @@ export default function Password({
         </div>
       </div>
 
-      <div className="step-p-content select-none">
+      <div className={`${theme == "light" && "!bg-white !text-black"} step-p-content select-none`}>
         <form
           className="step-p-form !relative !min-h-[554px]"
           onSubmit={(e) => {
@@ -86,14 +88,14 @@ export default function Password({
         >
           <div className="step-p-form-m">
             <div className="step-p-form-c">
-              <p className="step-p-form-d">Create a password</p>
-              <p className="step-p-form-cc">
+              <p className={`${theme=="light" && "!text-slate-900"} step-p-form-d`}>Create a password</p>
+              <p className={`${theme=="light" && "!text-slate-700"} step-p-form-cc`}>
                 You will use this to unlock your wallet.
               </p>
             </div>
             <div className="step-p-p-wrapper">
               <input
-                className="step-p-input"
+                className={`${theme=="light" && "!bg-slate-300 !text-slate-900 !border-slate-400"} step-p-input`}
                 type="password"
                 placeholder="Password"
                 maxLength={48}
@@ -101,7 +103,7 @@ export default function Password({
               />
               <div className="relative w-full">
                 <input
-                  className="step-p-confirm"
+                  className={`${theme=="light" && "!bg-slate-300 !text-slate-900 !border-slate-400"} step-p-confirm`}
                   type="password"
                   placeholder="Confirm Password"
                   onChange={handleConfirmPasswordChange}
@@ -135,12 +137,12 @@ export default function Password({
             </button>
           </div>
 
-          <div className="absolute top-0 flex items-center flex-col align-center justify-center w-full mt-8 p-3 bg-black/30 rounded-md">
-            <p className="text-xs text-slate-400">
-              <span className="font-bold text-slate-300">Never</span> share this
+          <div className={`${theme == "light" && "bg-slate-400/60"} absolute top-0 flex items-center flex-col align-center justify-center w-full mt-8 p-3 bg-black/30 rounded-md`}>
+            <p className={`${theme =="light" && "!text-slate-600"} text-xs text-slate-400`}>
+              <span className={`${theme=="light" && "!text-slate-700"} font-bold text-slate-300`}>Never</span> share this
               password
             </p>
-            <p className="text-xs text-slate-400">
+            <p className={`${theme =="light" && "!text-slate-600"} text-xs text-slate-400`}>
               your seed is to be encrypted with it.
             </p>
           </div>

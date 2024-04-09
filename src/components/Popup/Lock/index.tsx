@@ -11,8 +11,10 @@ import "../../../styles/login.css";
 
 export default function Lockscreen({
   setLoggedIn,
+  theme
 }: {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  theme: "dark" | "light";
 }) {
   const [resetPassW, setResetPassW] = useState<boolean>(false);
   const [shouldCall, setShouldCall] = useState<boolean>(false);
@@ -21,21 +23,23 @@ export default function Lockscreen({
   return (
     <>
       {resetPassW ? (
-        <Forgot goBack={setResetPassW} />
+        <Forgot goBack={setResetPassW} theme={theme} />
       ) : (
         <>
-          <Navbar />
+          <Navbar theme={theme} />
           <Form
             goForth={setResetPassW}
             setInvalidPass={setInvalidPass}
             handleSubmit={() => setShouldCall(true)}
             invalidPass={invalidPass}
+            theme={theme}
           />
           <Footer
             shouldCall={shouldCall}
             setInvalidPass={setInvalidPass}
             setShouldCall={setShouldCall}
             setLoggedIn={setLoggedIn}
+            theme={theme}
           />
         </>
       )}
