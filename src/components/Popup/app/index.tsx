@@ -41,6 +41,7 @@ export default function App() {
             )}
           </div>
         </div>
+
         <div className="app-nav-c">
           {widget == "home" && (
             <span className="text-slate-400 text-xl select-none cursor-pointer">
@@ -55,10 +56,7 @@ export default function App() {
         </div>
       </section>
 
-      <div
-        className="w-full h-full overflow-y-scroll overflow-x-hidden"
-        onClick={() => (isNavOpen ? setNavOpen(false) : null)}
-      >
+      <div className="w-full h-full relative overflow-y-hidden overflow-x-hidden">
         {/** main content */}
 
         {widget == "home" && <Home />}
@@ -66,9 +64,31 @@ export default function App() {
         {widget == "swap" && <Swap />}
         {widget == "history" && <History />}
         {widget == "network" && <Network />}
+
+        <div
+          className={`w-full h-full bg-black absolute top-0 left-0 right-0 ${
+            !isNavOpen ? "slide-out-l" : "slide-in-l"
+          }`}
+          id="slider"
+        >
+          <div>
+            <div
+              className="absolute right-0 top-0 mr-3 hover:text-yellow-600 glow-lantern !bg-transparent transition-all"
+              role="button"
+            >
+              {/** TODO */}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="bottom-nav-wrapper !drop-shadow-2xl !w-full">
+      <div
+        className="bottom-nav-wrapper !drop-shadow-2xl !w-full"
+        onClick={() => {
+          if (isNavOpen) setNavOpen(false);
+          return;
+        }}
+      >
         <div
           aria-orientation="horizontal"
           role="tablist"

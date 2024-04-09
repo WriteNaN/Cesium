@@ -1,6 +1,22 @@
 import { useEffect, useState } from "react";
 
 import PopupWrapper from "./Wrapper";
+import App from "./app";
+
+export default function Popup() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  return (
+    <PopupWrapper theme={theme}>
+      <App />
+    </PopupWrapper>
+  );
+}
+
+/**
+import { useEffect, useState } from "react";
+
+import PopupWrapper from "./Wrapper";
 import Lockscreen from "./Lock";
 import InitializeScreen from "./Initialize";
 
@@ -53,7 +69,6 @@ export default function Popup() {
           )}
         </>
       )}
-      {/** If prettier didn't exist... */}
 
       {isAppLoggedIn && (
         <>
@@ -73,3 +88,4 @@ export default function Popup() {
     </PopupWrapper>
   );
 }
+*/
