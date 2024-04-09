@@ -90,12 +90,12 @@
 .step-p-input {
   width: 100%;
   padding: 14px !important;
-  background: rgb(12, 12, 16) !important; 
+  background: rgb(12, 12, 16); 
   border-width: 1px !important;
   border-style: solid !important;
-  border-color: rgb(47, 47, 47) !important;
+  border-color: rgb(47, 47, 47);
   border-radius: 6px !important;
-  color: white !important;
+  color: white;
   font-size: 16px !important;
   line-height: 19px !important;
   margin-bottom: 10px !important;
@@ -153,14 +153,18 @@
 .step-p-confirm {
   width: 100%;
   padding: 14px !important;
-  background: rgb(12, 12, 16) !important; 
+  background: rgb(12, 12, 16); 
   border-width: 1px !important;
   border-style: solid !important;
-  border-color: rgb(47, 47, 47) !important;
+  border-color: rgb(47, 47, 47);
   border-radius: 6px !important;
   color: white !important;
   font-size: 16px !important;
   line-height: 19px !important;
+}
+
+.step-p-confirm::-ms-reveal {
+  display: none !important;
 }
 
 .start-content {

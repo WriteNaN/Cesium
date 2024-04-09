@@ -11,7 +11,7 @@ import "../../../styles/login.css";
 
 export default function Lockscreen({
   setLoggedIn,
-  theme
+  theme,
 }: {
   setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
   theme: "dark" | "light";

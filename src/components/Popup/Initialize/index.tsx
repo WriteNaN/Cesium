@@ -9,18 +9,22 @@ import ImportPassword from "./restore/Password";
 
 import "../../../styles/initialize.css";
 
-export default function InitializeScreen({ theme }: { theme: "dark" | "light"}) {
+export default function InitializeScreen({
+  theme,
+}: {
+  theme: "dark" | "light";
+}) {
   const [wizardI, setWizardI] = useState<number>(0);
   return (
     <>
       {wizardI == 0 && <Start setW={setWizardI} theme={theme} />}
       {wizardI == 1 && <Password setW={setWizardI} theme={theme} />}
       {wizardI == 2 && <Mnemonic setW={setWizardI} theme={theme} />}
-      {wizardI == 3 && <Done setW={setWizardI} />}
+      {wizardI == 3 && <Done setW={setWizardI} theme={theme} />}
       {wizardI == 4 && <ImportPhrase setW={setWizardI} />}
       {wizardI == 5 && <ImportPassword setW={setWizardI} />}
 
-      {wizardI == 420 && <Done setW={setWizardI} prevStep={5} />}
+      {wizardI == 420 && <Done setW={setWizardI} prevStep={5} theme={theme} />}
     </>
   );
 }

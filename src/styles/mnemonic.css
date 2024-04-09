@@ -124,7 +124,7 @@
   width: 100% !important;
   height: 100% !important;
   border-radius: 6px !important;
-  background-color: inherit !important;
+  background-color: inherit;
   border: none !important;
   z-index: 1 !important;
   transition: background 0.2s ease;

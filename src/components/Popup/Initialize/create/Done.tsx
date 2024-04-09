@@ -12,9 +12,11 @@ import cryptoWorker from "../../../../worker/crypto?worker&url";
 export default function Created({
   setW,
   prevStep,
+  theme,
 }: {
   setW: Dispatch<React.SetStateAction<number>>;
   prevStep?: number;
+  theme: "light" | "dark";
 }) {
   const [loading, setLoading] = useState<boolean>(true);
   const [password, setPassword] = useState<string>("");
@@ -65,7 +67,11 @@ export default function Created({
 
   return (
     <>
-      <div className="step-p-nav">
+      <div
+        className={`step-p-nav ${
+          theme == "light" && "!bg-white !text-black !border-slate-400"
+        }`}
+      >
         <div
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"
@@ -80,12 +86,20 @@ export default function Created({
         </div>
       </div>
       {loading ? (
-        <div className="flex justify-center items-center h-full">
-          <RingLoader color={"#FFFFFF"} loading={loading} size={150} />
+        <div
+          className={`${
+            theme == "light" && "!bg-white !text-black"
+          } flex justify-center items-center h-full`}
+        >
+          <RingLoader color={"#0096FF"} loading={loading} size={150} />
         </div>
       ) : (
         <>
-          <div className="relative flex items-center align-center justify-center !min-h-[554px] h-full w-full">
+          <div
+            className={`relative flex items-center align-center justify-center !min-h-[554px] h-full w-full ${
+              theme == "light" && "!bg-white !text-black"
+            }`}
+          >
             <div className="flex flex-col p-2 items-center align-center justify-center select-none">
               <img
                 src="img/logo.svg"
@@ -93,7 +107,11 @@ export default function Created({
                 draggable={false}
               />
               <p className="mt-4 text-2xl">You're all done!</p>
-              <p className="mt-2 text-md text-slate-300">
+              <p
+                className={`mt-2 text-md text-slate-300 ${
+                  theme == "light" && "!text-slate-600"
+                }`}
+              >
                 You can now fully enjoy your wallet.
               </p>
 

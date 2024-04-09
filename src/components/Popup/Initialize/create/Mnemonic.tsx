@@ -11,7 +11,7 @@ import { setSessionValue } from "../../../../utils/storage";
 
 export default function Mnemonic({
   setW,
-  theme
+  theme,
 }: {
   setW: Dispatch<React.SetStateAction<number>>;
   theme: "light" | "dark";
@@ -25,7 +25,11 @@ export default function Mnemonic({
   }, []);
   return (
     <>
-      <div className={`step-p-nav ${theme=="light" && "!bg-white !text-black !border-slate-400"}`}>
+      <div
+        className={`step-p-nav ${
+          theme == "light" && "!bg-white !text-black !border-slate-400"
+        }`}
+      >
         <div
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"
@@ -40,7 +44,11 @@ export default function Mnemonic({
         </div>
       </div>
 
-      <div className="step-m-wrapper">
+      <div
+        className={`step-m-wrapper ${
+          theme == "light" && "!bg-white !text-black"
+        }`}
+      >
         <form
           className="step-m-form"
           onSubmit={(e) => {
@@ -53,7 +61,9 @@ export default function Mnemonic({
         >
           <div className="step-m-c select-none">
             <div className="step-m-h">
-              <p className="step-m-hp">Secret Recovery Phrase</p>
+              <p className={`step-m-hp ${theme == "light" && "!text-black"}`}>
+                Secret Recovery Phrase
+              </p>
               <p className="step-m-hs">
                 This phrase is the ONLY way to recover your wallet. Do NOT share
                 it with anyone!
@@ -66,37 +76,56 @@ export default function Mnemonic({
               {mnemonic.split(" ").map((word, index) => (
                 <div
                   key={index}
-                  className="border p-2 text-xs bg-black/60 p-1 rounded-sm"
+                  className={`border p-2 text-xs bg-black/60 p-1 rounded-sm ${
+                    theme == "light" && "!bg-slate-400/60"
+                  }`}
                 >
-                  <span className="text-slate-400 select-none">
+                  <span
+                    className={`${
+                      theme == "light" && "!text-slate-900"
+                    } text-slate-400 select-none`}
+                  >
                     {index + 1}.{" "}
                   </span>
-                  <span>{word}</span>
+                  <span className={`${theme == "light" && "!text-slate-900"}`}>
+                    {word}
+                  </span>
                 </div>
               ))}
             </div>
 
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 group-hover:hidden display-transition">
-              <BsEyeSlashFill size={64} />
+              <BsEyeSlashFill
+                size={64}
+                className={`${theme == "light" && "!text-slate-400"}`}
+              />
             </div>
           </div>
 
           <div className="step-m-confirm">
-            <div className="step-m-checkbox mr-2 ">
+            <div
+              className={`step-m-checkbox mr-2 ${
+                theme == "light" && "!border-slate-600"
+              }`}
+            >
               <input
                 type="checkbox"
-                className="custom-ch"
+                className={`custom-ch ${theme == "light" && "!bg-slate-300"}`}
                 onChange={(e) => setChecked(e.currentTarget.checked)}
               />
             </div>
-            <p className="step-m-p">I saved my Secret Recovery Phrase</p>
+            <p className={`step-m-p ${theme == "light" && "!text-slate-800"}`}>
+              I saved my Secret Recovery Phrase
+            </p>
           </div>
 
           <button
             className={`step-m-continue select-none !z-20 ${
               checked
                 ? "!cursor-pointer !bg-sky-600"
-                : "!opacity-60 !cursor-not-allowed"
+                : `!opacity-60 !cursor-not-allowed ${
+                    theme == "light" && "!text-slate-800"
+                  }`
             }`}
           >
             Continue

@@ -14,7 +14,7 @@ export default function Popup() {
   const [isLocked, setIsLocked] = useState<boolean>(true);
   const [isAppLoggedIn, setAppLoggedIn] = useState<boolean>(false);
   const [sessionMasterKey, setSessionMasterKey] = useState<string | null>(null);
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     if (isAppLoggedIn) {
@@ -43,7 +43,7 @@ export default function Popup() {
   }, []);
 
   return (
-    <PopupWrapper>
+    <PopupWrapper theme={theme}>
       {!isAppLoggedIn && (
         <>
           {isLocked ? (
@@ -64,7 +64,7 @@ export default function Popup() {
           ) : (
             <>
               <div className="absolute inset-0 !z-50 flex !h-screen !w-screen items-center justify-center bg-black">
-                <HashSpinner size={80} color="#ffffff" loading={true} />
+                <HashSpinner size={80} color="#0096FF" loading={true} />
               </div>
             </>
           )}
