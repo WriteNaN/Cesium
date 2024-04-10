@@ -1,22 +1,6 @@
 import { useEffect, useState } from "react";
 
 import PopupWrapper from "./Wrapper";
-import App from "./app";
-
-export default function Popup() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  return (
-    <PopupWrapper theme={theme}>
-      <App />
-    </PopupWrapper>
-  );
-}
-
-/**
-import { useEffect, useState } from "react";
-
-import PopupWrapper from "./Wrapper";
 import Lockscreen from "./Lock";
 import InitializeScreen from "./Initialize";
 
@@ -30,7 +14,7 @@ export default function Popup() {
   const [isLocked, setIsLocked] = useState<boolean>(true);
   const [isAppLoggedIn, setAppLoggedIn] = useState<boolean>(false);
   const [sessionMasterKey, setSessionMasterKey] = useState<string | null>(null);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     if (isAppLoggedIn) {
@@ -88,4 +72,3 @@ export default function Popup() {
     </PopupWrapper>
   );
 }
-*/
