@@ -14,7 +14,7 @@ export default function Popup() {
   const [isLocked, setIsLocked] = useState<boolean>(true);
   const [isAppLoggedIn, setAppLoggedIn] = useState<boolean>(false);
   const [sessionMasterKey, setSessionMasterKey] = useState<string | null>(null);
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     if (isAppLoggedIn) {
