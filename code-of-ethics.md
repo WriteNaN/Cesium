@@ -3,6 +3,7 @@ This document is a superset of the "**Code of Conduct**" on this repository.
 
 # (2) Purpose
 > *orginally from https://sqlite.org/codeofethics.html, simply perfect for any project and it's maintainers. Henceforth, current maintainers and future maintainers should follow the ethics and rules described below. this is monitored directly from the heavens.*
+> ofcourse you can opt not to, but following them would grant something really awesome!!!! :D
 
 **May we honor these sacred principles of life and the matrix program. Amen.**
 
