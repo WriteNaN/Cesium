@@ -18,7 +18,7 @@ export default defineConfig({
   build: {
     minify: true,
     cssMinify: true,
-    cssCodeSplit: true,
+    cssCodeSplit: true, 
     rollupOptions: {
       input: {
         popup: resolve(__dirname, "popup.html"),

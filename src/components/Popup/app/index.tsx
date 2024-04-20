@@ -50,7 +50,7 @@ export default function App() {
           )}
           {widget == "network" && (
             <span className="text-slate-400 text-md select-none cursor-pointer">
-              Active Networks
+              Manage Network
             </span>
           )}
         </div>

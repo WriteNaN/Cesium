@@ -6,7 +6,7 @@ import { wallet } from "multi-nano-web";
 
 // @ts-expect-error no check
 import cryptoWorker from "../../../worker/crypto?worker&url";
-import { getLocalStorage, setSessionValue } from "../../../utils/storage";
+import { getLocalStorage, setSessionValue, getSessionValue } from "../../../utils/storage";
 
 // theme added
 export default function Footer({
@@ -24,6 +24,16 @@ export default function Footer({
 }) {
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    (async () => {
+      const masterSeed = await getSessionValue("masterSeed");
+      if (masterSeed) {
+        alert(masterSeed);
+        return setLoggedIn(true);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     if (password === "") return;
