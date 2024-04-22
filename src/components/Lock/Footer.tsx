@@ -29,7 +29,7 @@ export default function Footer({
     (async () => {
       const masterSeed = await storage.get("masterSeed", "session");
       if (masterSeed) {
-        alert(masterSeed);
+        //alert(masterSeed);
         return setLoggedIn(true);
       }
     })();
