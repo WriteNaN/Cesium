@@ -4,10 +4,10 @@ import React, { Dispatch, useState, useEffect } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { wallet } from "multi-nano-web";
 
-import "../../../../styles/mnemonic.css";
+import "../../../styles/mnemonic.css";
 import { BsEyeSlashFill } from "react-icons/bs";
 
-import storage from "../../../../utils/storage";
+import storage from "../../../utils/storage";
 
 export default function Mnemonic({
   setW,

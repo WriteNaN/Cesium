@@ -14,7 +14,7 @@ import {
   BiTrash,
 } from "react-icons/bi";
 import { IoArrowBack } from "react-icons/io5";
-import { getLocalStorage, setLocalStorage } from "../../../utils/storage";
+import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 
 interface Network {
   ticker: string;

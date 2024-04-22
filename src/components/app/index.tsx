@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { FaBars, FaBarsStaggered } from "react-icons/fa6";
-import "../../../styles/app.css";
+import "../../styles/app.css";
 import {
   AiFillDollarCircle,
   AiOutlineGlobal,

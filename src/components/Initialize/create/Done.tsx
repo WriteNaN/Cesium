@@ -4,10 +4,10 @@ import React, { Dispatch, useEffect, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import Confetti from "react-confetti-boom";
 import { ClipLoader as RingLoader } from "react-spinners";
-import storage from "../../../../utils/storage";
+import storage from "../../../utils/storage";
 
 // @ts-expect-error no check
-import cryptoWorker from "../../../../worker/crypto?worker&url";
+import cryptoWorker from "../../../worker/crypto?worker&url";
 
 export default function Created({
   setW,

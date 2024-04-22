@@ -7,7 +7,7 @@ import Done from "./create/Done";
 import ImportPhrase from "./restore/Phrase";
 import ImportPassword from "./restore/Password";
 
-import "../../../styles/initialize.css";
+import "../../styles/initialize.css";
 
 export default function InitializeScreen({
   theme,

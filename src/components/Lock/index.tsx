@@ -5,7 +5,7 @@ import Form from "./Form";
 import Footer from "./Footer";
 import Forgot from "../Forgot";
 
-import "../../../styles/login.css";
+import "../../styles/login.css";
 
 // As long as it gets the work done, it's all good - Write Int
 

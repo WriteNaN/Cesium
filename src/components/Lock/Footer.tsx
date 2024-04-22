@@ -5,8 +5,8 @@ import { ClipLoader as HashSpinner } from "react-spinners";
 import { wallet } from "multi-nano-web";
 
 // @ts-expect-error no check
-import cryptoWorker from "../../../worker/crypto?worker&url";
-import storage from "../../../utils/storage";
+import cryptoWorker from "../../worker/crypto?worker&url";
+import storage from "../../utils/storage";
 
 // theme added
 export default function Footer({

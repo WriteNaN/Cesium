@@ -1,16 +1,14 @@
 // You know the rules and so do I
 
-import React, { Dispatch, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { IoArrowBack } from "react-icons/io5";
 
-import storage from "../../../../utils/storage";
+import storage from "../../../utils/storage";
 
-export default function Password({
+export default function ImportPassword({
   setW,
-  theme,
 }: {
-  setW: Dispatch<React.SetStateAction<number>>;
-  theme: "light" | "dark";
+  setW: React.Dispatch<React.SetStateAction<number>>;
 }) {
   const [passLen, setPassLen] = useState<number>(0);
   const [passwordStrength, setPasswordStrength] = useState<string>("");
@@ -58,65 +56,47 @@ export default function Password({
   };
 
   return (
-    <div>
-      <div
-        className={`${
-          theme == "light" && "!bg-white !text-black !border-slate-400"
-        } step-p-nav`}
-      >
+    <>
+      <div className="step-p-nav relative">
         <div
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"
-          onClick={() => setW(0)}
+          onClick={() => {
+            storage.set("password", password, "session");
+            return setW(4);
+          }}
         >
           <IoArrowBack size={20} />
         </div>
         <div className="step-p-steps select-none">
           <div className="step-dot mr-[10px]" />
-          <div className="step-dot mr-[10px] !bg-slate-700" />
+          <div className="step-dot mr-[10px]" />
           <div className="step-dot !bg-slate-700" />
         </div>
       </div>
 
-      <div
-        className={`${
-          theme == "light" && "!bg-white !text-black"
-        } step-p-content select-none`}
-      >
+      <div className="step-p-content select-none">
         <form
           className="step-p-form !relative !min-h-[554px]"
           onSubmit={(e) => {
             e.preventDefault();
             if (passwordMatch && !(confirmPassword == "")) {
               storage.set("password", password, "session");
-              return setW(2);
+              return setW(420);
             }
             return;
           }}
         >
           <div className="step-p-form-m">
             <div className="step-p-form-c">
-              <p
-                className={`${
-                  theme == "light" && "!text-slate-900"
-                } step-p-form-d`}
-              >
-                Create a password
-              </p>
-              <p
-                className={`${
-                  theme == "light" && "!text-slate-700"
-                } step-p-form-cc`}
-              >
+              <p className="step-p-form-d">Create a password</p>
+              <p className="step-p-form-cc">
                 You will use this to unlock your wallet.
               </p>
             </div>
             <div className="step-p-p-wrapper">
               <input
-                className={`step-p-input ${
-                  theme == "light" &&
-                  "!bg-slate-300 !text-slate-900 !border-slate-400"
-                }`}
+                className="step-p-input"
                 type="password"
                 placeholder="Password"
                 maxLength={48}
@@ -124,10 +104,7 @@ export default function Password({
               />
               <div className="relative w-full">
                 <input
-                  className={`${
-                    theme == "light" &&
-                    "!bg-slate-300 !text-slate-900 !border-slate-400"
-                  } step-p-confirm`}
+                  className="step-p-confirm"
                   type="password"
                   placeholder="Confirm Password"
                   onChange={handleConfirmPasswordChange}
@@ -161,36 +138,18 @@ export default function Password({
             </button>
           </div>
 
-          <div
-            className={`${
-              theme == "light" && "bg-slate-400/60"
-            } absolute top-0 flex items-center flex-col align-center justify-center w-full mt-8 p-3 bg-black/30 rounded-md`}
-          >
-            <p
-              className={`${
-                theme == "light" && "!text-slate-600"
-              } text-xs text-slate-400`}
-            >
-              <span
-                className={`${
-                  theme == "light" && "!text-slate-700"
-                } font-bold text-slate-300`}
-              >
-                Never
-              </span>{" "}
-              share this password
+          <div className="absolute top-0 flex items-center flex-col align-center justify-center w-full mt-8 p-3 bg-black/30 rounded-md">
+            <p className="text-xs text-slate-400">
+              <span className="font-bold text-slate-300">Never</span> share this
+              password
             </p>
-            <p
-              className={`${
-                theme == "light" && "!text-slate-600"
-              } text-xs text-slate-400`}
-            >
+            <p className="text-xs text-slate-400">
               your seed is to be encrypted with it.
             </p>
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 

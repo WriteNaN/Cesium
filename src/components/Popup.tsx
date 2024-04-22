@@ -6,7 +6,7 @@ import InitializeScreen from "./Initialize";
 
 import { ClipLoader as HashSpinner } from "react-spinners";
 
-import storage from "../../utils/storage";
+import storage from "../utils/storage";
 
 import App from "./app";
 

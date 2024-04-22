@@ -1,10 +1,10 @@
 import React from "react";
 
-import "../../styles/forgot.css";
+import "../styles/forgot.css";
 import { BiLockAlt } from "react-icons/bi";
 import { BiX } from "react-icons/bi";
 
-import { resetWallet } from "../../utils/storage";
+import { resetWallet } from "../utils/storage";
 
 // theme done!
 export default function Forgot({
