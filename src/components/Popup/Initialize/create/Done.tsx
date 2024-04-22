@@ -4,7 +4,7 @@ import React, { Dispatch, useEffect, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import Confetti from "react-confetti-boom";
 import { ClipLoader as RingLoader } from "react-spinners";
-import { getSessionValue, setLocalStorage } from "../../../../utils/storage";
+import storage from "../../../../utils/storage";
 
 // @ts-expect-error no check
 import cryptoWorker from "../../../../worker/crypto?worker&url";
@@ -24,8 +24,8 @@ export default function Created({
 
   useEffect(() => {
     async function fetchData() {
-      const fetchedPassword = await getSessionValue("password");
-      const fetchedMnemonic = await getSessionValue("mnemonic");
+      const fetchedPassword = await storage.get<string>("password", "session");
+      const fetchedMnemonic = await storage.get<string>("mnemonic", "session");
       setPassword(fetchedPassword || "");
       setMnemonic(fetchedMnemonic || "");
       setLoading(false);
@@ -44,7 +44,7 @@ export default function Created({
           worker.onmessage = (event) => {
             const { result, error } = event.data;
             if (result) {
-              setLocalStorage("encryptedMasterKey", result);
+              storage.set("encryptedMasterKey", result, "local");
             } else if (error) {
               console.error("Encryption failed:", error);
             }

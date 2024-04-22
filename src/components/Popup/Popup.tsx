@@ -6,7 +6,7 @@ import InitializeScreen from "./Initialize";
 
 import { ClipLoader as HashSpinner } from "react-spinners";
 
-import { getLocalStorage, getSessionValue } from "../../utils/storage";
+import storage from "../../utils/storage";
 
 import App from "./app";
 
@@ -19,7 +19,7 @@ export default function Popup() {
   useEffect(() => {
     if (isAppLoggedIn) {
       (async () => {
-        setSessionMasterKey((await getSessionValue("masterSeed")) || null);
+        setSessionMasterKey((await storage.get("masterSeed", "session")) || null);
       })();
     }
   }, [isAppLoggedIn]);
@@ -27,7 +27,7 @@ export default function Popup() {
   useEffect(() => {
     async function checkLocalStorage() {
       try {
-        const encryptedMasterSeed = await getLocalStorage("encryptedMasterKey");
+        const encryptedMasterSeed = await storage.get("encryptedMasterKey", "local");
 
         if (encryptedMasterSeed) {
           setIsLocked(true);

@@ -7,7 +7,7 @@ import { wallet } from "multi-nano-web";
 import "../../../../styles/mnemonic.css";
 import { BsEyeSlashFill } from "react-icons/bs";
 
-import { setSessionValue } from "../../../../utils/storage";
+import storage from "../../../../utils/storage";
 
 export default function Mnemonic({
   setW,
@@ -21,7 +21,7 @@ export default function Mnemonic({
   useEffect(() => {
     const generatedMnemonic = wallet.generate().mnemonic;
     setMnemonic(generatedMnemonic);
-    setSessionValue("mnemonic", wallet.fromMnemonic(generatedMnemonic).seed);
+    storage.set("mnemonic", wallet.fromMnemonic(generatedMnemonic).seed, "session");
   }, []);
   return (
     <>

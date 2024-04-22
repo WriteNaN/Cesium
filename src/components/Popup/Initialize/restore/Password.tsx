@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { IoArrowBack } from "react-icons/io5";
 
-import { setSessionValue } from "../../../../utils/storage";
+import storage from "../../../../utils/storage";
 
 export default function ImportPassword({
   setW,
@@ -62,7 +62,7 @@ export default function ImportPassword({
           className="cursor-pointer text-slate-400 hover:text-slate-200"
           role="button"
           onClick={() => {
-            setSessionValue("password", password);
+            storage.set("password", password, "session");
             return setW(4);
           }}
         >
@@ -81,7 +81,7 @@ export default function ImportPassword({
           onSubmit={(e) => {
             e.preventDefault();
             if (passwordMatch && !(confirmPassword == "")) {
-              setSessionValue("password", password);
+              storage.set("password", password, "session");
               return setW(420);
             }
             return;

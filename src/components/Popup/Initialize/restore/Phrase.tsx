@@ -5,7 +5,7 @@ import { IoArrowBack } from "react-icons/io5";
 import words from "../../../../utils/words";
 import { tools, wallet } from "multi-nano-web";
 
-import { setSessionValue } from "../../../../utils/storage";
+import storage from "../../../../utils/storage";
 
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -126,9 +126,10 @@ export default function ImportPhrase({
               e.preventDefault();
               if (canContinue) {
                 if (tools.validateMnemonic(mnemonicInputs.join(" "))) {
-                  setSessionValue(
+                  storage.set(
                     "mnemonic",
-                    wallet.fromMnemonic(mnemonicInputs.join(" ")).seed
+                    wallet.fromMnemonic(mnemonicInputs.join(" ")).seed,
+                    "session"
                   );
                   return setW(5);
                 }

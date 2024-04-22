@@ -6,7 +6,7 @@ import { wallet } from "multi-nano-web";
 
 // @ts-expect-error no check
 import cryptoWorker from "../../../worker/crypto?worker&url";
-import { getLocalStorage, setSessionValue, getSessionValue } from "../../../utils/storage";
+import storage from "../../../utils/storage";
 
 // theme added
 export default function Footer({
@@ -27,7 +27,7 @@ export default function Footer({
 
   useEffect(() => {
     (async () => {
-      const masterSeed = await getSessionValue("masterSeed");
+      const masterSeed = await storage.get("masterSeed", "session");
       if (masterSeed) {
         alert(masterSeed);
         return setLoggedIn(true);
@@ -45,7 +45,7 @@ export default function Footer({
         try {
           const res = wallet.fromSeed(result); // just double check :D
           setInvalidPass(false);
-          setSessionValue("masterSeed", res.seed);
+          storage.set("masterSeed", res.seed, "session");
           setTimeout(() => {
             setLoggedIn(true);
           }, 100); // worst case, or your browser is bad for your pc's health;
@@ -63,7 +63,7 @@ export default function Footer({
       worker.postMessage({
         action: "decrypt",
         payload: {
-          encryptedMasterSeed: await getLocalStorage("encryptedMasterKey"),
+          encryptedMasterSeed: await storage.get("encryptedMasterKey", "local"),
           password,
         },
       });
