@@ -70,11 +70,7 @@ export default function App() {
       </div>
 
       <div
-        className="bottom-nav-wrapper !drop-shadow-2xl !w-full"
-        onClick={() => {
-          if (isNavOpen) setNavOpen(false);
-          return;
-        }}
+        className={`bottom-nav-wrapper !drop-shadow-2xl !w-full ${isNavOpen && "!hidden"}`}
       >
         <div
           aria-orientation="horizontal"
